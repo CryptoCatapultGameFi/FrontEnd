@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
 
-function Storage() {
+function Item() {
     return (
       <LayoutPage>
         <SelectButtom />
@@ -29,4 +29,4 @@ function Storage() {
     );
   }
   
-  export default Storage;
+  export default Item;
