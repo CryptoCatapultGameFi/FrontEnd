@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
 import Item from "../item/Item";
+import Stone from "../bullet/Bullet";
 import './Storage.css'
 
 
@@ -17,7 +18,12 @@ const sticks = [
     rubber: "3"
   }
 ]
-const bullets = []
+const bullets = [
+  {
+    name: "Stone",
+    power: "none"
+  }
+]
 
 
 function GetStick() {
@@ -35,7 +41,7 @@ function GetBullet() {
     return <h4>You don't have any bullet</h4>
   }
   const stickElements = bullets.map((bullet, index) => {
-    return <Item key={index} item={bullet} />;
+    return <Stone key={index} item={bullet} />;
   })
   return stickElements
 }
