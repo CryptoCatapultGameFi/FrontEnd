@@ -19,9 +19,9 @@
     background-color: rgb(136, 130, 130);
 }
 
-.NFT-item {
+.NFT-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 16px;
+    column-gap: 30px;
     row-gap: 16px;
 }

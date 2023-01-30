@@ -7,12 +7,14 @@ import './Storage.css'
 
 const sticks = [
   {
-    name: "stick1",
-    stat: "15"
+    name: "Stick1",
+    power: "90",
+    rubber: "5"
   },
   {
-    name: "stick2",
-    stat: "16"
+    name: "Stick2",
+    power: "120",
+    rubber: "3"
   }
 ]
 const bullets = []
@@ -20,7 +22,6 @@ const bullets = []
 
 function GetStick() {
   if (sticks.length === 0) {
-    console.log("test");
     return <h4>You don't have any stick</h4>
   }
   const stickElements = sticks.map((stick, index) => {
@@ -31,13 +32,12 @@ function GetStick() {
 
 function GetBullet() {
   if (bullets.length === 0) {
-    console.log("test");
     return <h4>You don't have any bullet</h4>
   }
-  // const stickElements = sticks.map((stick, index) ==> {
-  //   return <
-  // })
-  // return  
+  const stickElements = bullets.map((bullet, index) => {
+    return <Item key={index} item={bullet} />;
+  })
+  return stickElements
 }
 
 
@@ -49,7 +49,7 @@ function Storage() {
           <Route
             path="stick"
             element={ 
-              <div className="NFT-item">
+              <div className="NFT-div">
                 <GetStick />
               </div>
             }
@@ -58,8 +58,9 @@ function Storage() {
             path="bullet"
             element={
               <>
-                <h3>Bullet</h3>
+              <div className="NFT-div">
                 <GetBullet />
+              </div>
               </>
             }
           />

@@ -1,6 +1,14 @@
-.NFT{
+.NFT-item{
     background-color: rgb(248, 125, 103);
     padding: 20px;
 
 
+}
+
+.catapult{
+    height: 15vw;
+}
+
+.rubber{
+    color: red; 
 }
