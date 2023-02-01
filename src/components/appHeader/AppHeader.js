@@ -11,7 +11,7 @@ function AppHeader() {
   return (
     <header className="app-header">
       {/* <NavLink className={getNavClass} to="/" end>Welcome</NavLink> */}
-      <img className="app-header-logo" src='/logo192.png' />
+      <img className="app-header-logo" src='/catapult.png' />
       <NavLink className={getNavClass} to="home">Home</NavLink>
       <NavLink className={getNavClass} to="play">Play</NavLink>
       <NavLink className={getNavClass} to="storage">Storage</NavLink>
