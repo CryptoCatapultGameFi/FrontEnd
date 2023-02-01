@@ -1,32 +1,15 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import LayoutPage from "../../layout/LayoutPage";
-import SelectButtom from "../../util/selectButtom/SelectButtom";
+import "./Item.css"
 
-function Item() {
-    return (
-      <LayoutPage>
-        <SelectButtom />
-        <Routes>
-          <Route
-            path="stick"
-            element={
-              <>
-                <h3>Stick</h3>
-              </>
-            }
-          />
-          <Route
-            path="bullet"
-            element={
-              <>
-                <h3>Bullet</h3>
-              </>
-            }
-          />
-          <Route path="/" element={<Navigate to="stick" replace={true} />} />
-        </Routes>
-      </LayoutPage>
-    );
-  }
-  
-  export default Item;
+function Item(props) {
+    const { item } = props;
+    return ( 
+        <div className="NFT-item">
+            <h4> {item.name}</h4>
+            <img className="catapult" src='/catapult1.png' />
+            <h4> Power: {item.power}</h4>
+            <h4 className="rubber"> Rubber: {item.rubber}/5</h4>
+        </div>
+    )
+}
+
+export default Item;

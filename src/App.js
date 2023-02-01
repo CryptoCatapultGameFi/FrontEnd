@@ -8,6 +8,7 @@ import Storage from './components/storage/Storage'
 import Marketplace from './components/marketplace/marketplace'
 import Item from './components/item/item';
 import Play from './components/play/Play';
+import RandomItem from './components/randomItem/RandomItem'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="home" element={<Home />} />
         <Route path="storage/*" element={<Storage />} />
         <Route path="marketplace/*" element={<Marketplace />} />
-        <Route path="item/*" element={<Item />} />
+        <Route path="item/*" element={<RandomItem />} />
         <Route path="play/*" element={<Play />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
