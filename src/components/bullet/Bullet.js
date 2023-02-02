@@ -5,7 +5,7 @@ function Stone(props) {
     return ( 
         <div className="NFT-item">
             <h4> {item.name}</h4>
-            <img className="bullet" src='/stone.png' />
+            <img className="bullet" alt="bullet-img" src='/stone.png' />
             <h4> Power: {item.power}</h4>
         </div>
     )

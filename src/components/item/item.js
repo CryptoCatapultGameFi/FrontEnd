@@ -5,7 +5,7 @@ function Item(props) {
     return ( 
         <div className="NFT-item">
             <h4> {item.name}</h4>
-            <img className="catapult" src='/catapult1.png' />
+            <img className="catapult" alt="item-img" src='/catapult1.png' />
             <h4> Power: {item.power}</h4>
             <h4 className="rubber"> Rubber: {item.rubber}/5</h4>
         </div>
