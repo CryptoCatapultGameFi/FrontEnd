@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
-import Item from "../item/item";
+ import Item from "../item/item";
 import Stone from "../bullet/Bullet";
 import './Storage.css'
 
