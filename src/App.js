@@ -5,7 +5,7 @@ import Home from './components/homePage/Home';
 import Page404 from './components/notFound/Page404';
 import Welcome from './components/welcomePage/Welcome'
 import Storage from './components/storage/Storage'
-import Marketplace from './components/marketplace/Marketplace'
+import Marketplace from './components/marketplace/marketplace'
 import Play from './components/play/Play';
 import RandomItem from './components/randomItem/RandomItem'
 
