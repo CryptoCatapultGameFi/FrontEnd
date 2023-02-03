@@ -1,8 +1,14 @@
 .buttom {
-    color: #000;
-    background-color: lightgray;
-    padding: 10px;
-    text-decoration: none;
-    margin: auto;
-    display: inline-block;
+  color: #000;
+  background-color: lightgray;
+  padding: 10px;
+  text-decoration: none;
+  margin: auto;
+  display: inline-block;
+}
+
+.unityComponent {
+    max-width: 100%;
+    height: auto;
+    margin-left: 400px;
 }
