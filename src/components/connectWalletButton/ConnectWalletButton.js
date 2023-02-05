@@ -42,25 +42,18 @@ function ConnectButton(props) {
   }
 
   if (account === null) {
-    return (
-      <div className="App">
-        {isWalletInstalled ? (
-          <div>
-            <NavLink className={props.getNavClass} to="home">
-              <button onClick={connectWallet}>Connect Wallet</button>
-            </NavLink>
-          </div>
-        ) : (
-          <p>Install Metamask wallet</p>
-        )}
-      </div>
-    );
+    if (isWalletInstalled) {
+      return <NavLink className={props.onNav} to="home">
+      <button onClick={connectWallet}>Connect Wallet</button>
+    </NavLink>
+    }
+    else { 
+      return <p className="app-header-item app-header-address">Plase Install Metamask wallet</p>
+    }
+
   } else {
     return (
-      <div className="App">
       <NavLink className="app-header-item app-header-address" to="home">Connected as: {formatAddress(account)}</NavLink>
-
-      </div>
     );
   }
 }
