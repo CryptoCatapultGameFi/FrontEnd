@@ -1,7 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
- import Item from "../item/item";
+import { WalletContext } from "../../App";
+import React, { useContext } from "react";
+import Item from "../item/item";
 import Stone from "../bullet/Bullet";
 import './Storage.css'
 
@@ -48,6 +50,15 @@ function GetBullet() {
 
 
 function Storage() {
+  const { account } = useContext(WalletContext);
+
+  if (account === null) {
+    return (
+      <LayoutPage>
+      <h2>Please Login</h2>
+      </LayoutPage>
+    );
+  }
     return (
       <LayoutPage>
         <SelectButtom />

@@ -1,6 +1,5 @@
 import LayoutPage from "../../layout/LayoutPage";
-
-
+import React, { useContext } from "react";
 function Home() {
   return (
     <LayoutPage>

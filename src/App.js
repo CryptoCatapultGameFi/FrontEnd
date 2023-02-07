@@ -8,9 +8,14 @@ import Storage from './components/storage/Storage'
 import Marketplace from './components/marketplace/marketplace'
 import Play from './components/play/Play';
 import RandomItem from './components/randomItem/RandomItem'
+import React, { useState } from 'react';
+
+const WalletContext = React.createContext(); 
 
 function App() {
+  const [account, setAccount] = useState(null);
   return (
+    <WalletContext.Provider value={{ account, setAccount }}>
     <div className="App">
       <AppHeader />
       <Routes>
@@ -22,9 +27,10 @@ function App() {
         <Route path="play/*" element={<Play />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
-
     </div>
+    </WalletContext.Provider>
   );
 }
 
+export { WalletContext };
 export default App;

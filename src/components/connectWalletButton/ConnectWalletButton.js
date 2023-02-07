@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { WalletContext } from "../../App";
 import formatAddress from "../../util/formatAddress";
 
 function ConnectButton(props) {
@@ -19,8 +20,8 @@ function ConnectButton(props) {
 
   const [isWalletInstalled, setIsWalletInstalled] = useState(false);
   // state for keeping track of current connected account.
-  const [account, setAccount] = useState(null);
-
+  const {account, setAccount} = useContext(WalletContext);
+ 
   useEffect(() => {
     if (window.ethereum) {
       setIsWalletInstalled(true);
@@ -40,6 +41,7 @@ function ConnectButton(props) {
         alert("Something went wrong");
       });
   }
+
 
   if (account === null) {
     if (isWalletInstalled) {
