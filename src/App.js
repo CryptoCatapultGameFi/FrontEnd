@@ -8,7 +8,9 @@ import Storage from './components/storage/Storage'
 import Marketplace from './components/marketplace/marketplace'
 import Play from './components/play/Play';
 import RandomItem from './components/randomItem/RandomItem'
+import AboutUs from './components/aboutUs/AboutUs';
 import React, { useState } from 'react';
+
 
 const WalletContext = React.createContext(); 
 
@@ -24,6 +26,7 @@ function App() {
         <Route path="storage/*" element={<Storage />} />
         <Route path="marketplace/*" element={<Marketplace />} />
         <Route path="item/*" element={<RandomItem />} />
+        <Route path="about/" element={<AboutUs />} />
         <Route path="play/*" element={<Play />} />
         <Route path="*" element={<Page404 />} />
       </Routes>

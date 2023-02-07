@@ -18,4 +18,5 @@
 }
 .select-buttom-active {
     background-color: rgb(136, 130, 130);
-  }
+    border: 3px solid #000000;
+}

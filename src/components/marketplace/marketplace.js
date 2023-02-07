@@ -22,7 +22,6 @@ function Marketplace() {
             path="stick"
             element={
               <>
-                <h3>Stick</h3>
               </>
             }
           />
@@ -30,7 +29,6 @@ function Marketplace() {
             path="bullet"
             element={
               <>
-                <h3>Bullet</h3>
               </>
             }
           />
