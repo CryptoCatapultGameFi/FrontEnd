@@ -7,10 +7,13 @@
   display: inline-block;
 }
 
-.unityComponent {
+.entryUnity {
     max-width: 100%;
-    width: 1000px;
+    width: 100px;
     height: auto;
-    margin-left: 400px;
-    margin-top: 100px;
+    margin-left: 860px;
+    margin-top: 400px;
+    justify-content: center;
+    position: relative;
+    color: #000;
 }
