@@ -1,4 +1,3 @@
-
 import './LayoutPage.css';
 
 function LayoutPage(props) {
