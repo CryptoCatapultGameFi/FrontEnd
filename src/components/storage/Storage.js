@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
 import { WalletContext } from "../../App";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Item from "../item/item";
 import Stone from "../bullet/Bullet";
 import './Storage.css'
@@ -20,15 +20,10 @@ const sticks = [
     rubber: "3"
   }
 ]
-const bullets = [
-  {
-    name: "Stone",
-    power: "none"
-  }
-]
 
 
-function GetStick() {
+function GetStick(props) {
+  const { nfts } = props;
   if (sticks.length === 0) {
     return <h4>You don't have any stick</h4>
   }
@@ -38,19 +33,41 @@ function GetStick() {
   return stickElements
 }
 
-function GetBullet() {
-  if (bullets.length === 0) {
+function GetBullet(props) {
+  const { nfts } = props;
+  if (nfts.length === 0) {
     return <h4>You don't have any bullet</h4>
   }
-  const stickElements = bullets.map((bullet, index) => {
-    return <Stone key={index} item={bullet} />;
+  const bulletElements = nfts.map((bullet, index) => {
+      return <Stone key={index} item={bullet} />;
+
   })
-  return stickElements
+  return bulletElements
 }
 
 
 function Storage() {
+
+  const [nfts, setNfts] = useState([]);
+
   const { account } = useContext(WalletContext);
+
+  async function getNft() {
+    const response = await fetch(`http://localhost:5000/nfts/acc_nft/0x3da06950A8f5EB43c97A11F560C22eDAcF5444C0`);
+    const responseJson = await response.json();
+    setNfts(responseJson);
+  }
+
+  useEffect(() => {
+      getNft();
+  }, [])
+
+  // const nftElements = nfts.map(nft => {
+  //   return (
+
+  //   )
+  // })
+
 
   if (account === null) {
     return (
@@ -67,7 +84,7 @@ function Storage() {
             path="stick"
             element={ 
               <div className="NFT-div">
-                <GetStick />
+                <GetStick nfts={nfts}/>
               </div>
             }
           />
@@ -76,7 +93,7 @@ function Storage() {
             element={
               <>
               <div className="NFT-div">
-                <GetBullet />
+                <GetBullet nfts={nfts}/>
               </div>
               </>
             }
