@@ -36,6 +36,8 @@ function AppHeader() {
         <NavLink className={getNavClass} to="marketplace">Marketplace</NavLink>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
         <ConnectButton onNav={'app-header-wallet' + ' app-header-address'} />
+        <a className={'app-header-wallet' + ' app-header-address'} to="about">{account.amount}</a>
+
       </header>
     );
   }

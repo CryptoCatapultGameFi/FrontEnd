@@ -29,17 +29,21 @@ function ConnectButton(props) {
   }, []);
 
   async function connectWallet() {
-    window.ethereum
-      .request({
+    try {
+      const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       })
-      .then((accounts) => {
-        console.log(accounts[0])
-        setAccount(accounts[0]);
-      })
-      .catch((error) => {
-        alert("Something went wrong");
-      });
+      const response = await fetch(`http://localhost:5000/getAmount/` + accounts[0] );
+      console.log(accounts[0])
+      const userAmount = await response.json();
+      const userAccount = {
+        accountid: accounts[0],
+        amount: userAmount.result
+      }
+      setAccount(userAccount)
+    } catch (error) {
+      alert("Something went wrong" + error);
+    }
   }
 
 
@@ -55,7 +59,7 @@ function ConnectButton(props) {
 
   } else {
     return (
-      <NavLink className="app-header-item app-header-address" to="home">Connected as: {formatAddress(account)}</NavLink>
+      <NavLink className="app-header-item app-header-address" to="home">Connected as: {formatAddress(account.accountid)}</NavLink>
     );
   }
 }
