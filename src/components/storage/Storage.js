@@ -2,10 +2,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
 import { WalletContext } from "../../App";
-import React, { useContext, useEffect, useState } from "react";
-import Item from "../item/item";
+import React, { useContext, useEffect, useState } from "react"; 
 import Stone from "../bullet/Bullet";
 import './Storage.css'
+import Stick from "../stick/Stick";
 
 
 const sticks = [
@@ -23,25 +23,34 @@ const sticks = [
 
 
 function GetStick(props) {
+  let nonStick = 0;
   const { nfts } = props;
-  if (sticks.length === 0) {
-    return <h4>You don't have any stick</h4>
-  }
-  const stickElements = sticks.map((stick, index) => {
-    return <Item key={index} item={stick} />;
-  })
+  const stickElements = nfts.map((stick, index) => {
+    if(stick.name === "Stick") {
+      return <Stick key={index} item={stick} />;
+    }
+    nonStick++
+})
+if (nonStick === nfts.length) {
+  return <h4>You don't have any stick</h4>
+}
+
   return stickElements
 }
 
 function GetBullet(props) {
+  let nonBullet = 0;
   const { nfts } = props;
-  if (nfts.length === 0) {
+  const bulletElements = nfts.map((bullet, index) => {
+      if(bullet.name === "Bullet") {
+        return <Stone key={index} item={bullet} />;
+      }
+      nonBullet++
+  })
+  console.log(nonBullet)
+  if (nonBullet === nfts.length) {
     return <h4>You don't have any bullet</h4>
   }
-  const bulletElements = nfts.map((bullet, index) => {
-      return <Stone key={index} item={bullet} />;
-
-  })
   return bulletElements
 }
 
@@ -62,11 +71,6 @@ function Storage() {
       getNft();
   }, [])
 
-  // const nftElements = nfts.map(nft => {
-  //   return (
-
-  //   )
-  // })
 
 
   if (account === null) {

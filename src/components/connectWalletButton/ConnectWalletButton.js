@@ -33,9 +33,10 @@ function ConnectButton(props) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       })
-      const response = await fetch(`http://localhost:5000/getAmount/` + accounts[0] );
-      console.log(accounts[0])
+      const response = await fetch(`http://localhost:5000/contracts/getAmount/` + accounts[0] );
+      console.log(accounts[0])  
       const userAmount = await response.json();
+      console.log(userAmount.result)
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result
