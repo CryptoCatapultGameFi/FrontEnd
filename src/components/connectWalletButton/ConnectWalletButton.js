@@ -34,7 +34,15 @@ function ConnectButton(props) {
         method: "eth_requestAccounts",
       })
       const response = await fetch(`http://localhost:5000/contracts/getAmount/` + accounts[0] );
-      console.log(accounts[0])  
+      console.log(accounts[0])
+      const auth = await fetch(`http://localhost:5000/user/user/` + accounts[0], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (auth.status !== 200) {
+        throw new Error(`Login accout error with status ${auth.status}..`);
+      } 
+
       const userAmount = await response.json();
       console.log(userAmount.result)
       const userAccount = {
