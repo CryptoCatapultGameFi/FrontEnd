@@ -7,7 +7,7 @@
   display: inline-block;
 }
 
-.entryUnity {
+/* .entryUnity {
     max-width: 100%;
     width: 100px;
     height: auto;
@@ -16,4 +16,23 @@
     justify-content: center;
     position: relative;
     color: #000;
+} */
+
+/* .play-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 999;
+} */
+
+.play-content {
+  background-color: rgb(248, 125, 103);
+  max-width: 1200px;
+  position: relative;
+  padding: 20px;
 }

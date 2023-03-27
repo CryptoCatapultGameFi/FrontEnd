@@ -1,7 +1,7 @@
 import "./BulletPost.css"
 
 function BulletPost(props) {
-    const { item , onBgClick } = props;
+    const { item , onBgClick, onSelectClick } = props;
     return (
         <div className="Bullet-OnClick">
             <div className="Bullet-bg" onClick={onBgClick}/>
@@ -10,6 +10,7 @@ function BulletPost(props) {
                 <img src={item.metadata.image} className="bullet" alt="bullet-img"  />
                 <h2 className="Bullet-text"> Power: {item.metadata.power}</h2>
                 <h3 className="Bullet-text"> Description: {item.metadata.description}</h3>
+                <button onClick={onSelectClick}> Select </button>
             </div>
         </div>
     )

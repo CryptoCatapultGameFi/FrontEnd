@@ -47,7 +47,9 @@ function ConnectButton(props) {
       console.log(userAmount.result)
       const userAccount = {
         accountid: accounts[0],
-        amount: userAmount.result
+        amount: userAmount.result,
+        selected_stick: null,
+        selected_bullet: null
       }
       setAccount(userAccount)
     } catch (error) {

@@ -4,26 +4,10 @@ import SelectButtom from "../../util/selectButtom/SelectButtom";
 import { WalletContext } from "../../App";
 import React, { useContext, useEffect, useState } from "react"; 
 import BulletPost from "../bullet/BulletPost";
+import CatapultPost from "../stick/StickPost";
 import Stone from "../bullet/Bullet";
 import './Storage.css'
 import Stick from "../stick/Stick";
-
-
-// const sticks = [
-//   {
-//     name: "Stick1",
-//     power: "90",
-//     rubber: "5"
-//   },
-//   {
-//     name: "Stick2",
-//     power: "120",
-//     rubber: "3"
-//   }
-// ]
-
-
-
 
 
 
@@ -31,7 +15,7 @@ import Stick from "../stick/Stick";
 function Storage() {
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [nfts, setNfts] = useState([]);
-  const { account } = useContext(WalletContext);
+  const { account , setAccount } = useContext(WalletContext);
 
   async function getNft() {
     const response = await fetch(`http://localhost:5000/nfts/acc_nft/0x3da06950A8f5EB43c97A11F560C22eDAcF5444C0`);
@@ -47,38 +31,48 @@ function Storage() {
     setSelectedNFT(null);
   }
 
+  function onSelectClick(selectedNFT) {
+    let userAccount = null;
+    if(selectedNFT.metadata.type === "bullet") {
+      userAccount = {
+        accountid: account.accountid,
+        amount: account.amount,
+        selected_stick: account.selected_stick,
+        selected_bullet: selectedNFT
+      }
+    }
+    else if (selectedNFT.metadata.type === "catapult") {
+      userAccount = {
+        accountid: account.accountid,
+        amount: account.amount,
+        selected_stick: selectedNFT,
+        selected_bullet: account.selected_bullet
+      }
+    }
+    setAccount(userAccount)
+    setSelectedNFT(null)
+  }
 
   useEffect(() => {
       getNft();
   }, [])
 
-  function GetStick(props) {
-    let nonStick = 0;
-    const { nfts } = props;
-    const stickElements = nfts.map((stick, index) => {
-      if(stick.name === "Stick") {
-        return <Stick key={index} item={stick} onNFTClick={onNFTClick} />;
-      }
-      nonStick++
-  })
-  if (nonStick === nfts.length) {
-    return <h4>You don't have any stick</h4>
-  }
-  
-    return stickElements
-  }
-
-  function GetBullet(props) {
-    let nonBullet = 0;
-    const { nfts } = props;
-    const bulletElements = nfts.map((bullet, index) => {
-        if(bullet.name === "Bullet") {
-          return <Stone key={index} item={bullet} onNFTClick={onNFTClick}/>;
+  function GetInAppNFT(props) {
+    let nonSelectNFT = 0;
+    const { nfts, type } = props;
+    const bulletElements = nfts.map((nft, index) => {
+        if(nft.metadata.type === type) {
+          if(type === "bullet") {
+            return <Stone key={index} item={nft} onNFTClick={onNFTClick}/>;
+          }
+          else if(type === "catapult") {
+            return <Stick key={index} item={nft} onNFTClick={onNFTClick} />;
+          }
         }
-        nonBullet++
+        nonSelectNFT++
     })
-    if (nonBullet === nfts.length) {
-      return <h4>You don't have any bullet</h4>
+    if (nonSelectNFT === nfts.length) {
+      return <h4>You don't have any {type}</h4>
     }
     return bulletElements
   }
@@ -86,7 +80,13 @@ function Storage() {
 
   let NFTPost = null;
   if (!!selectedNFT) {
-    NFTPost = <BulletPost item={selectedNFT} onBgClick={onNFTCloseClick} />;
+    if(selectedNFT.metadata.type === "bullet") {
+      NFTPost = <BulletPost item={selectedNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedNFT)} />;
+    }
+    else if(selectedNFT.metadata.type === "catapult") {
+      NFTPost = <CatapultPost item={selectedNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedNFT)} />;
+    }
+
   }
 
   if (account === null) {
@@ -105,7 +105,7 @@ function Storage() {
             element={ 
               <>
               <div className="NFT-div">
-                <GetStick nfts={nfts}/>
+                <GetInAppNFT nfts={nfts} type={"catapult"}/>
               </div>
               {NFTPost}
               </>
@@ -116,7 +116,7 @@ function Storage() {
             element={
               <>
               <div className="NFT-div">
-                <GetBullet nfts={nfts}/>
+                <GetInAppNFT nfts={nfts} type={"bullet"}/>
               </div>
               {NFTPost}
               </>
