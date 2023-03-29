@@ -15,6 +15,23 @@ function Play() {
   }
 
 
+  async function play() {
+    try {
+      const body = { 
+        id: account.accountid, 
+        catapult:  account.selected_stick,
+        bullet: account.selected_bullet
+      }
+      const response = await fetch("http://localhost:5000/user/play", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+    
+  }
 
   if ((account.selected_stick === null) || (account.selected_bullet === null)) {
     let text = ""
@@ -32,7 +49,6 @@ function Play() {
   }
 
   else {
-    console.log(account.selected_bullet)
     return (
       <LayoutPage>
         <div className="play-page">
@@ -40,7 +56,7 @@ function Play() {
               <img className="catapult" alt="item-img" src={account.selected_stick.metadata.image} />
               <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
             <a> {account.selected_stick.metadata.power} {account.selected_bullet.metadata.power}</a>
-            <button type="button" class="btn btn-info entryUnity"><a href="https://cryptocatapult-f75a8.web.app/" >Let's Go</a></button>
+            <button type="button" class="btn btn-info entryUnity" onClick={play}><a href="https://cryptocatapult-f75a8.web.app/" >Let's Go</a></button>
           </div>
         </div>
 

