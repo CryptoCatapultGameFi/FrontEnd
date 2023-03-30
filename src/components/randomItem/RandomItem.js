@@ -10,29 +10,49 @@ import NFTContractAddress from "../../json/nft-contract-address.json"
 function RandomItem() {
   const { account } = useContext(WalletContext);
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const yourSignedContractObject = new ethers.Contract(
-    "0xB429cf6C5904829Fd69e99507533d900dC487423", 
+  const contract = new ethers.Contract(
+    process.env.REACT_APP_CONTRACT_ADDRESS, 
     NFTContractAddress,
     provider.getSigner(0)
   );
 
   async function RandomCatapult() {
-    const response = await fetch(`http://localhost:5000/nfts/random/catapult`);
-    const res = await response.json()
-    console.log(res.id)
-    console.log(res.catapult_gateway)
-    const tx = yourSignedContractObject.purchaseToMintCatapult(res.id, res.catapult_gateway, {
-      gasLimit: 1000000,
-    })
+    try{
+      if (account.amount < 500) {
+        alert("You don't have enough CCP Token to random Catapult")
+      }
+      else {
+        const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/catapult`);
+        const res = await response.json()
+        const tx = await contract.purchaseToMintCatapult(res.id, res.catapult_gateway, {
+          gasLimit: 1000000,
+        })
+        console.log(tx.status)
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+
 
   }
 
   async function RandomBullet() {
-    const response = await fetch(`http://localhost:5000/nfts/random/bullet`);
-    const res = await response.json()
-    const tx = yourSignedContractObject.purchaseToMintBullet(res.id, res.bullet_gateway, {
-      gasLimit: 1000000,
-    })
+    try{
+      if (account.amount < 300) {
+        alert("You don't have enough CCP Token to random Bullet")
+      }
+      else {
+        const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/bullet`);
+        const res = await response.json()
+        const tx = await contract.purchaseToMintBullet(res.id, res.bullet_gateway, {
+          gasLimit: 1000000,
+        })
+        console.log(tx)
+      }
+
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 
   if (account === null) {
@@ -52,7 +72,7 @@ function RandomItem() {
             element={
               <div className="box-item">
                 <img className="box" src='/box.png' alt="box-img" />
-                <h2 className="box-text">Common50%  Uncommon25%    Rare13%  UltraRare7%</h2>
+                <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
                 <button onClick={RandomCatapult} className="box-text random-buttom" >500 Token</button>
               </div>
             }
@@ -62,7 +82,7 @@ function RandomItem() {
             element={
               <div className="box-item">
                 <img className="box" src='/box.png' alt="box-img"/>
-                <h2 className="box-text">Uncommon60%    Rare30%  UltraRare10%</h2>
+                <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
                 <button onClick={RandomBullet} className="box-text random-buttom" >300 Token</button>
               </div>
 

@@ -19,18 +19,17 @@ function Storage() {
   const { account , setAccount } = useContext(WalletContext);
 
   async function getNft() {
-    const response = await fetch(`http://localhost:5000/nfts/acc_nft/`+ account.accountid);
+    const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ account.accountid);
     const responseJson = await response.json();
     setNfts(responseJson);
   }
 
   async function onNFTClick(nft) {
     if (nft.metadata.type === "catapult") {
-      console.log(nft.tokenId)
-      const response = await fetch(`http://localhost:5000/nfts/rubber/` + account.accountid + `/` + nft.tokenId)
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/rubber/` + account.accountid + `/` + nft.tokenId)
       const responseJson = await response.json();
       setRubber( 3 - responseJson.count)
-      console.log(rubber)
+
     }
     setSelectedNFT(nft);
   }
@@ -67,13 +66,15 @@ function Storage() {
   }
 
   useEffect(() => {
+    if(account !== null) {
       getNft();
-  }, [])
+    }
+  }, )
 
   function GetInAppNFT(props) {
     let nonSelectNFT = 0;
     const { nfts, type } = props;
-    const bulletElements = nfts.map((nft, index) => {
+    const nftElements = nfts.map((nft, index) => {
         if(nft.metadata === undefined) {
           nonSelectNFT++
         }
@@ -88,12 +89,13 @@ function Storage() {
         else {
           nonSelectNFT++
         }
+      return null
         
     })
     if (nonSelectNFT === nfts.length) {
       return <h4>You don't have any {type}</h4>
     }
-    return bulletElements
+    return nftElements
   }
 
 

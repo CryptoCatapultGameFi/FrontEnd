@@ -22,32 +22,32 @@ function ConnectButton(props) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       })
-      const response = await fetch(`http://localhost:5000/contracts/getAmount/` + accounts[0] );
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accounts[0] );
       console.log(accounts[0])
-      const auth = await fetch(`http://localhost:5000/user/user/` + accounts[0], {
+
+      const user = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/` + accounts[0] );
+      const userJson = await user.json();
+      console.log(userJson.status)
+      if (userJson.status === "new") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const metamask = new ethers.Contract(
+          process.env.REACT_APP_CONTRACT_ADDRESS, 
+          contractAddress,
+          provider.getSigner(0)
+        );
+        await metamask.approve(process.env.REACT_APP_NFT_OWNER_ADDRESS, 1000000000000000000000n, {
+          gasLimit: 1000000,
+        })
+      }
+
+      const auth = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/user/` + accounts[0], {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
       if (auth.status !== 200) {
         throw new Error(`Login accout error with status ${auth.status}..`);
       }
-      const user = await auth.json();
-      if (user.status === "new") {
-        try{
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          const metamask = new ethers.Contract(
-            "0x2f908f39f01eE4B07246A8582Ba49aFfeCF0Dc2F", 
-            contractAddress,
-            provider.getSigner(0)
-          );
-          await metamask.approve("0xB429cf6C5904829Fd69e99507533d900dC487423", 1000000000000000000000n, {
-            gasLimit: 1000000,
-          })
-        } catch (err) {
-          console.error(err.message);
-      }
-      }
-      
+
       const userAmount = await response.json();
       const userAccount = {
         accountid: accounts[0],
@@ -57,7 +57,7 @@ function ConnectButton(props) {
       }
       setAccount(userAccount)
     } catch (error) {
-      alert("Something went wrong" + error);
+      alert("Something went wrong of Login User please try again");
     }
   }
 

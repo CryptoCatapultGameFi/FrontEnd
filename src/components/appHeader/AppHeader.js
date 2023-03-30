@@ -20,7 +20,7 @@ function AppHeader() {
         <img className="app-header-logo" alt="logo" src='/catapult.png' />
         <NavLink className={getNavClass} to="home">Home</NavLink>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
-        <ConnectButton onNav={'app-header-wallet' + ' app-header-address'} />
+        <ConnectButton onNav={'app-header-wallet app-header-address'} />
       </header>
     );
   }
@@ -35,8 +35,8 @@ function AppHeader() {
         <NavLink className={getNavClass} to="item">Find Item</NavLink>
         <NavLink className={getNavClass} to="marketplace">Marketplace</NavLink>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
-        <ConnectButton onNav={'app-header-wallet' + ' app-header-address'} />
-        <a className={'app-header-item' + ' app-header-address'} to="about">{account.amount} Token</a>
+        <ConnectButton onNav={'app-header-wallet app-header-address'} />
+        <a href="#/" className={'app-header-item app-header-address'} to="about">{account.amount} Token</a>
 
       </header>
     );

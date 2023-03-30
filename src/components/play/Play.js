@@ -1,18 +1,13 @@
 import LayoutPage from "../../layout/LayoutPage";
 import { WalletContext } from "../../App";
 import React, { useContext } from "react";
+// import { Link } from "react-router-dom";
 import "./Play.css";
 
 function Play() {
   
   const { account } = useContext(WalletContext);
-  if (account === null) {
-    return (
-      <LayoutPage>
-      <h2>Please Login</h2>
-      </LayoutPage>
-    );
-  }
+
 
 
   async function play() {
@@ -22,48 +17,46 @@ function Play() {
         catapult:  account.selected_stick,
         bullet: account.selected_bullet
       }
-      const response = await fetch("http://localhost:5000/user/play", {
+      await fetch(process.env.REACT_APP_BACKEND_PATH + "/user/play", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
+      window.location.href="https://cryptocatapult-f75a8.web.app/";
     } catch (err) {
       console.error(err.message);
     }
-    
   }
 
-  if ((account.selected_stick === null) || (account.selected_bullet === null)) {
-    let text = ""
-    if (account.selected_stick === null) {
-      text += "stick"
-    } 
-    if (account.selected_bullet === null) {
-      text += " bullet"
-    }
+  if (account === null) {
     return (
       <LayoutPage>
-        <a>please select {text}</a>
+      <h2>Please Login</h2>
       </LayoutPage>
     );
   }
-
-  else {
+  else if ((account.selected_stick === null) || (account.selected_bullet === null)) {
+    return (
+      <LayoutPage>
+        <h2>please select stick or bullet</h2>
+      </LayoutPage>
+    );
+  }
+  else{
     return (
       <LayoutPage>
         <div className="play-page">
           <div className="play-content">
               <img className="catapult" alt="item-img" src={account.selected_stick.metadata.image} />
               <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
-            <a> {account.selected_stick.metadata.power} {account.selected_bullet.metadata.power}</a>
-            <button type="button" class="btn btn-info entryUnity" onClick={play}><a href="https://cryptocatapult-f75a8.web.app/" >Let's Go</a></button>
+              <button type="button" className="btn btn-info entryUnity" onClick={play}> Play! </button>
           </div>
         </div>
-
+  
       </LayoutPage>
-      
     );
   }
+
 
 
 }
