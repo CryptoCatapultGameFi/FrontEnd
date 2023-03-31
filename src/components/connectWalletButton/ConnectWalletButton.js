@@ -37,8 +37,6 @@ function ConnectButton(props) {
         await metamask.approve(process.env.REACT_APP_MINT_NFT_ADDRESS, 1000000000000000000000n, {
           gasLimit: 1000000,
         })
-      }
-      if (userJson.status === "old") {
         const auth = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/user/` + accounts[0], {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -47,6 +45,7 @@ function ConnectButton(props) {
           throw new Error(`Login accout error with status ${auth.status}..`);
         }
       }
+
       const userAmount = await response.json();
       const userAccount = {
         accountid: accounts[0],
