@@ -27,7 +27,6 @@ function ConnectButton(props) {
 
       const user = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/` + accounts[0] );
       const userJson = await user.json();
-      console.log(userJson.status)
       if (userJson.status === "new") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const metamask = new ethers.Contract(
