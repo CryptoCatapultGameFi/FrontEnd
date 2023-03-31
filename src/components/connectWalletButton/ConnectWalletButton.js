@@ -30,11 +30,11 @@ function ConnectButton(props) {
       if (userJson.status === "new") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const metamask = new ethers.Contract(
-          process.env.REACT_APP_CONTRACT_ADDRESS, 
+          process.env.REACT_APP_TOKEN_CONTRACT_ADDRESS, 
           contractAddress,
           provider.getSigner(0)
         );
-        await metamask.approve(process.env.REACT_APP_NFT_OWNER_ADDRESS, 1000000000000000000000n, {
+        await metamask.approve(process.env.REACT_APP_MINT_NFT_ADDRESS, 1000000000000000000000n, {
           gasLimit: 1000000,
         })
       }

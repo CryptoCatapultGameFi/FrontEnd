@@ -11,11 +11,10 @@ function RandomItem() {
   const { account } = useContext(WalletContext);
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const contract = new ethers.Contract(
-    process.env.REACT_APP_CONTRACT_ADDRESS, 
+    process.env.REACT_APP_MINT_NFT_ADDRESS, 
     NFTContractAddress,
     provider.getSigner(0)
   );
-
   async function RandomCatapult() {
     try{
       if (account.amount < 500) {
@@ -24,10 +23,11 @@ function RandomItem() {
       else {
         const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/catapult`);
         const res = await response.json()
+        console.log(res)
         const tx = await contract.purchaseToMintCatapult(res.id, res.catapult_gateway, {
           gasLimit: 1000000,
         })
-        console.log(tx.status)
+        console.log(tx)
       }
     } catch (err) {
       console.error(err.message);
