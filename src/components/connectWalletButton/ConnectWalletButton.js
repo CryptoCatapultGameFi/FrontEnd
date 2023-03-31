@@ -38,15 +38,15 @@ function ConnectButton(props) {
           gasLimit: 1000000,
         })
       }
-
-      const auth = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/user/` + accounts[0], {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (auth.status !== 200) {
-        throw new Error(`Login accout error with status ${auth.status}..`);
+      if (userJson.status === "old") {
+        const auth = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/user/` + accounts[0], {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+        if (auth.status !== 200) {
+          throw new Error(`Login accout error with status ${auth.status}..`);
+        }
       }
-
       const userAmount = await response.json();
       const userAccount = {
         accountid: accounts[0],
