@@ -75,15 +75,26 @@ function Storage() {
     let nonSelectNFT = 0;
     const { nfts, type } = props;
     const nftElements = nfts.map((nft, index) => {
+        let selectText = "Select"
         if(nft.metadata === undefined) {
           nonSelectNFT++
         }
         else if(nft.metadata.type === type) {
           if(type === "bullet") {
-            return <Stone key={index} item={nft} onNFTClick={onNFTClick}/>;
+            if (account.selected_bullet !== null) {
+              if (account.selected_bullet.tokenId === nft.tokenId) {
+                selectText = "Selected"
+              }
+            }
+            return <Stone key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
           }
           else if(type === "catapult") {
-            return <Stick key={index} item={nft} onNFTClick={onNFTClick} />;
+            if (account.selected_stick !== null) {
+              if (account.selected_stick.tokenId === nft.tokenId) {
+                selectText = "Selected"
+              }
+            }
+            return <Stick key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
           }
         }
         else {

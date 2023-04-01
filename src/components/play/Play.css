@@ -18,21 +18,31 @@
     color: #000;
 } */
 
-/* .play-page {
+.play-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 999;
-} */
+  margin-top: 10%;
+}
 
 .play-content {
+  border-radius: 25px;
   background-color: rgb(248, 125, 103);
-  max-width: 1200px;
+  max-width: 600px;
   position: relative;
+  padding: 20px;
+}
+
+
+.image-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.play-content {
+  text-align: center;
+}
+
+.playImage {
   padding: 20px;
 }

@@ -4,6 +4,7 @@ import { WalletContext } from "../../App";
 import formatAddress from "../../util/formatAddress";
 import { ethers } from 'ethers';
 import contractAddress from '../../json/contract-address.json';
+import Cookies from 'js-cookie';
 
 function ConnectButton(props) {
 
@@ -16,6 +17,22 @@ function ConnectButton(props) {
       setIsWalletInstalled(true);
     }
   }, []);
+
+  // useEffect(() => {
+  //   const accountId = Cookies.get('accountId');
+  //   const amount = Cookies.get('amount');
+  //   if (accountId) {
+  //     const userAccount = {
+  //       accountid: accountId,
+  //       amount: amount,
+  //       selected_stick: null,
+  //       selected_bullet: null
+  //     }
+  //     setAccount(userAccount)
+  //   }
+  // }, );
+
+
 
   async function connectWallet() {
     try {
@@ -47,6 +64,8 @@ function ConnectButton(props) {
       }
 
       const userAmount = await response.json();
+      // Cookies.set('accountId', accounts[0], { expires: 7 });
+      // Cookies.set('amount', userAmount.result, { expires: 7 });
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result,

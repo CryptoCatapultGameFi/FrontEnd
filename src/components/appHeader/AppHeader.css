@@ -1,18 +1,22 @@
 .app-header {
     background-color: rgb(243, 87, 113);
-    height: auto;
+    height: 4.0vw;
+    border: 1px solid #000000;
   }
   
   .app-header-item {
+    border-radius: 0.5vw;
     color: rgb(34, 34, 34);
-    background-color: rgb(241, 192, 192);
+    border: 1px solid #000000;
     font-weight: 500;
     text-align: center;
     width: auto;
     display: inline-block;
     padding: 0.5%;
-    margin-left: 3%;
+    margin-top: 0.25vw;
+    margin-left: 2%;
     text-decoration: none;
+    background-color: rgb(241, 192, 192);
     font-size: 1.5vw;
   }
   
@@ -21,17 +25,22 @@
   }
 
   .app-header-logo {
-    height: 3vw;
-    position: absolute;
+    margin-left: 0.5vw;
+    height: 3.75vw;
+    margin-top: -0.6vw;
+
   }
 
   .app-header-address {
+    margin-top: 0.25vw;
     font-weight: 800;
     width: auto;
     float: right;
+    margin-right: 0.5vw;
   }
 
   .app-header-wallet {
+    margin-top: 0.3vw;
     color: rgb(34, 34, 34);
     font-weight: 500;
     text-align: center;

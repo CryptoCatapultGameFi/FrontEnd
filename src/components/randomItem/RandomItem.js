@@ -18,6 +18,7 @@ function RandomItem() {
   async function RandomCatapult() {
     try{
       if (account.amount < 500) {
+    
         alert("You don't have enough CCP Token to random Catapult")
       }
       else {

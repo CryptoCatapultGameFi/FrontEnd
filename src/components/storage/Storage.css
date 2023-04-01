@@ -25,3 +25,13 @@
     column-gap: 30px;
     row-gap: 16px;
 }
+
+.selectNFT{
+    background-color: aqua;
+}
+
+.NFT-item{
+    border-radius: 25px;
+    background-color: rgb(248, 125, 103);
+    padding: 20px;
+}

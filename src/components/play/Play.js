@@ -47,9 +47,14 @@ function Play() {
       <LayoutPage>
         <div className="play-page">
           <div className="play-content">
-              <img className="catapult" alt="item-img" src={account.selected_stick.metadata.image} />
-              <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
-              <button type="button" className="btn btn-info entryUnity" onClick={play}> Play! </button>
+              <div className="image-content">
+                <img className="catapult" alt="item-img" src={account.selected_stick.metadata.image} />
+                <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
+              </div>
+              <div>
+                <button type="button" className="btn btn-info entryUnity" onClick={play}> Play! </button>
+              </div>
+              
           </div>
         </div>
   
