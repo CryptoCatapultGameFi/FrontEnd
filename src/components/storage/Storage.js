@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import LayoutPage from "../../layout/LayoutPage";
 import SelectButtom from "../../util/selectButtom/SelectButtom";
 import { WalletContext } from "../../App";
@@ -10,13 +10,17 @@ import './Storage.css'
 import Stick from "../stick/Stick";
 
 
-
-
 function Storage() {
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [rubber, setRubber] = useState(3);
   const { account , setAccount } = useContext(WalletContext);
+  const [isNoNFT,  setIsNoNFT] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+      navigate("/item");
+  }
 
   async function getNft() {
     const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ account.accountid);
@@ -73,6 +77,7 @@ function Storage() {
 
   function GetInAppNFT(props) {
     let nonSelectNFT = 0;
+    setIsNoNFT(false);
     const { nfts, type } = props;
     const nftElements = nfts.map((nft, index) => {
         let selectText = "Select"
@@ -104,7 +109,7 @@ function Storage() {
         
     })
     if (nonSelectNFT === nfts.length) {
-      return <h4>You don't have any {type}</h4>
+      setIsNoNFT(true);
     }
     return nftElements
   }
@@ -136,6 +141,12 @@ function Storage() {
             path="stick"
             element={ 
               <>
+              {isNoNFT && 
+              <div>
+                <h2> You don't have any Stick </h2>
+                <button onClick={handleClick}> Let's Random </button>
+              </div>}
+
               <div className="NFT-div">
                 <GetInAppNFT nfts={nfts} type={"catapult"}/>
               </div>
@@ -147,6 +158,11 @@ function Storage() {
             path="bullet"
             element={
               <>
+              {isNoNFT && 
+              <div>
+                <h2> You don't have any Bullet </h2>
+                <button onClick={handleClick}> Let's Random </button>
+              </div>}
               <div className="NFT-div">
                 <GetInAppNFT nfts={nfts} type={"bullet"}/>
               </div>

@@ -1,13 +1,18 @@
 import LayoutPage from "../../layout/LayoutPage";
 import { WalletContext } from "../../App";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import "./Play.css";
 
 function Play() {
   
   const { account } = useContext(WalletContext);
+  const navigate = useNavigate();
 
+  const handleClick = () => {
+      navigate("/storage");
+  }
 
 
   async function play() {
@@ -39,6 +44,7 @@ function Play() {
     return (
       <LayoutPage>
         <h2>please select stick or bullet</h2>
+        <button onClick={handleClick}> Go to storage </button>
       </LayoutPage>
     );
   }

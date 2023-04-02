@@ -18,19 +18,25 @@ function ConnectButton(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const accountId = Cookies.get('accountId');
-  //   const amount = Cookies.get('amount');
-  //   if (accountId) {
-  //     const userAccount = {
-  //       accountid: accountId,
-  //       amount: amount,
-  //       selected_stick: null,
-  //       selected_bullet: null
-  //     }
-  //     setAccount(userAccount)
-  //   }
-  // }, );
+  useEffect(() => {
+    const accountId = Cookies.get('accountId');
+
+    if (accountId) {
+      const fetchData = async () => {
+        const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accountId );
+        const userAmount = await response.json();
+        const userAccount = {
+          accountid: accountId,
+          amount: userAmount.result,
+          selected_stick: null,
+          selected_bullet: null
+        }
+        setAccount(userAccount)
+      }
+      fetchData()
+
+    }
+  }, [setAccount]);
 
 
 
@@ -40,7 +46,6 @@ function ConnectButton(props) {
         method: "eth_requestAccounts",
       })
       const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accounts[0] );
-      console.log(accounts[0])
 
       const user = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/` + accounts[0] );
       const userJson = await user.json();
@@ -64,8 +69,7 @@ function ConnectButton(props) {
       }
 
       const userAmount = await response.json();
-      // Cookies.set('accountId', accounts[0], { expires: 7 });
-      // Cookies.set('amount', userAmount.result, { expires: 7 });
+      Cookies.set('accountId', accounts[0], { expires: 1/24 });
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result,

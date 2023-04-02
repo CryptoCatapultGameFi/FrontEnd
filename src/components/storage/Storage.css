@@ -21,7 +21,7 @@
 
 .NFT-div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 30px;
     row-gap: 16px;
 }
@@ -30,8 +30,8 @@
     background-color: aqua;
 }
 
-.NFT-item{
-    border-radius: 25px;
-    background-color: rgb(248, 125, 103);
-    padding: 20px;
-}
+    .NFT-item{
+        border-radius: 25px;
+        background-color: rgb(248, 125, 103);
+        padding: 20px;
+    }

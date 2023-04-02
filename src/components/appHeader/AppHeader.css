@@ -1,6 +1,6 @@
 .app-header {
     background-color: rgb(243, 87, 113);
-    height: 4.0vw;
+    height: 3.5vw;
     border: 1px solid #000000;
   }
   
@@ -17,7 +17,7 @@
     margin-left: 2%;
     text-decoration: none;
     background-color: rgb(241, 192, 192);
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
   
   .app-header-item-active {
@@ -26,21 +26,22 @@
 
   .app-header-logo {
     margin-left: 0.5vw;
-    height: 3.75vw;
+    height: 3.0vw;
     margin-top: -0.6vw;
 
   }
 
   .app-header-address {
     margin-top: 0.25vw;
-    font-weight: 800;
+    font-weight: 700;
     width: auto;
     float: right;
     margin-right: 0.5vw;
   }
 
   .app-header-wallet {
-    margin-top: 0.3vw;
+    border-radius: 0.5vw;
+    margin-top: 0.35vw;
     color: rgb(34, 34, 34);
     font-weight: 500;
     text-align: center;
@@ -48,5 +49,6 @@
     padding: 0.3%;
     margin-left: 3%;
     text-decoration: none;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
+
