@@ -39,8 +39,8 @@ function AppHeader() {
         <NavLink className={getNavClass} to="play">Play</NavLink>
         <NavLink className={getNavClass} to="storage">Storage</NavLink>
         <NavLink className={getNavClass} to="item">Find Item</NavLink>
-        <NavLink className={getNavClass} to="marketplace">Marketplace</NavLink>
-        <a className={"app-header-item"}href="https://app.uniswap.org/"  to="about">Swap</a>
+        <a className={"app-header-item"}href="https://testnets.opensea.io/collection/crypto-catapult-4" >Marketplace</a>
+        <a className={"app-header-item"}href="https://app.uniswap.org/" >Swap</a>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
 
         <button className={'app-header-item app-header-address logout'} onClick={logout}> Logout</button>
