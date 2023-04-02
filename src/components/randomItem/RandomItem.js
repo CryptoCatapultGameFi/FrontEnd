@@ -24,11 +24,9 @@ function RandomItem() {
       else {
         const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/catapult`);
         const res = await response.json()
-        console.log(res)
         const tx = await contract.purchaseToMintCatapult(res.id, res.catapult_gateway, {
           gasLimit: 1000000,
         })
-        console.log(tx)
       }
     } catch (err) {
       console.error(err.message);
@@ -48,7 +46,6 @@ function RandomItem() {
         const tx = await contract.purchaseToMintBullet(res.id, res.bullet_gateway, {
           gasLimit: 1000000,
         })
-        console.log(tx)
       }
 
     } catch (err) {
