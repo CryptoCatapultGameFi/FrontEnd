@@ -15,8 +15,6 @@ function Storage() {
   const [rubber, setRubber] = useState(3);
   const { account , setAccount } = useContext(WalletContext);
   const [isNoNFT,  setIsNoNFT] = useState(null);
-  // const [isNoCatapult,  setIsNoCatapult] = useState(null);
-  // const [isNoBullet,  setIsNoNFT] = useState(null);
   const [randomStage, setRandomStage] = useState(false);
   const navigate = useNavigate();
 
@@ -44,11 +42,12 @@ function Storage() {
     setRandomStage(true)
     setAccount(userAccount)
     navigate("/storage");
-
     setTimeout(() => setRandomStage(false), 2000);
   }
+
   async function getNft() {
     if(account.nfts === null) {
+      setIsNoNFT(false);
       const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ account.accountid);
       const responseJson = await response.json();
       const userAccount = {
@@ -110,7 +109,7 @@ function Storage() {
     let nonSelectNFT = 0;
     const { type } = props;
     if (account.nfts) {
-      setIsNoNFT(false);
+
       const nftElements = account.nfts.map((nft, index) => {
         let selectText = "Select"
         if(nft.metadata === undefined) {
@@ -147,9 +146,6 @@ function Storage() {
     }
   }
 
-  // function GetCatapult() {
-  //   let nonSelectCatapult = 0;
-  // }
 
 
   let NFTPost = null;
