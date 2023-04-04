@@ -19,7 +19,7 @@ function Play() {
     try {
       const body = { 
         id: account.accountid, 
-        catapult:  account.selected_stick,
+        catapult:  account.selected_catapult,
         bullet: account.selected_bullet
       }
       await fetch(process.env.REACT_APP_BACKEND_PATH + "/user/play", {
@@ -40,10 +40,10 @@ function Play() {
       </LayoutPage>
     );
   }
-  else if ((account.selected_stick === null) || (account.selected_bullet === null)) {
+  else if ((account.selected_catapult === null) || (account.selected_bullet === null)) {
     return (
       <LayoutPage>
-        <h2>please select stick or bullet</h2>
+        <h2>please select Catapult and Bullet</h2>
         <button onClick={handleClick}> Go to storage </button>
       </LayoutPage>
     );
@@ -54,7 +54,7 @@ function Play() {
         <div className="play-page">
           <div className="play-content">
               <div className="image-content">
-                <img className="catapult" alt="item-img" src={account.selected_stick.metadata.image} />
+                <img className="catapult" alt="item-img" src={account.selected_catapult.metadata.image} />
                 <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
               </div>
               <div>

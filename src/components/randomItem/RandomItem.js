@@ -65,7 +65,7 @@ function RandomItem() {
         <SelectButtom />
         <Routes>
           <Route
-            path="stick"
+            path="catapult"
             element={
               <div className="box-item">
                 <img className="box" src='/box.png' alt="box-img" />
@@ -85,7 +85,7 @@ function RandomItem() {
 
             }
           />
-          <Route path="/" element={<Navigate to="stick" replace={true} />} />
+          <Route path="/" element={<Navigate to="catapult" replace={true} />} />
         </Routes>
       </LayoutPage>
     );

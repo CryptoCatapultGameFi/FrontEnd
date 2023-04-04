@@ -30,7 +30,7 @@ function ConnectButton(props) {
         const userAccount = {
           accountid: accountId,
           amount: userAmount.result,
-          selected_stick: null,
+          selected_catapult: null,
           selected_bullet: null,
           nfts: nftsJson
         }
@@ -78,7 +78,7 @@ function ConnectButton(props) {
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result,
-        selected_stick: null,
+        selected_catapult: null,
         selected_bullet: null,
         nfts: nftsJson
       }

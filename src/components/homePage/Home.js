@@ -24,7 +24,7 @@ function Home() {
         <div className="home-stat">
         <img className="home-text-img" alt="logo" src='/catapult.png' />
         <h1 className="home-text number">{totalCatapult} </h1>
-        <h1 className="home-text">Sticks </h1>
+        <h1 className="home-text">Catapults </h1>
         </div>
         <div className="home-stat">
         <img className="home-text-img" alt="logo" src='/stone.png' />

@@ -1,6 +1,6 @@
-import "./Stick.css"
+import "./Catapult.css"
 
-function Stick(props) {
+function Catapult(props) {
     const { item , onNFTClick, selectText} = props;
     return ( 
         <div className="NFT-item" onClick={() => onNFTClick(item)} >
@@ -12,4 +12,4 @@ function Stick(props) {
     )
 }
 
-export default Stick;
+export default Catapult;

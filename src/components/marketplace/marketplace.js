@@ -19,7 +19,7 @@ function Marketplace() {
         <SelectButtom />
         <Routes>
           <Route
-            path="stick"
+            path="catapult"
             element={
               <>
               </>
@@ -32,7 +32,7 @@ function Marketplace() {
               </>
             }
           />
-          <Route path="/" element={<Navigate to="stick" replace={true} />} />
+          <Route path="/" element={<Navigate to="catapult" replace={true} />} />
         </Routes>
       </LayoutPage>
     );

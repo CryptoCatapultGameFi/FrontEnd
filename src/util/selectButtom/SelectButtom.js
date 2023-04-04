@@ -12,7 +12,7 @@ function getNavClass(navLinkProps) {
     return (
         <div className="div-buttom">
         <p>
-          <NavLink className={getNavClass} to="stick">Stick</NavLink>
+          <NavLink className={getNavClass} to="catapult">Catapult</NavLink>
           <NavLink className={getNavClass} to="bullet">Bullet</NavLink>
         </p>
         </div>

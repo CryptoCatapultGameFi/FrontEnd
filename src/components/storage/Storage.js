@@ -4,18 +4,18 @@ import SelectButtom from "../../util/selectButtom/SelectButtom";
 import { WalletContext } from "../../App";
 import React, { useContext, useEffect, useState } from "react"; 
 import BulletPost from "../bullet/BulletPost";
-import CatapultPost from "../stick/StickPost";
+import CatapultPost from "../catapult/CatapultPost";
 import Stone from "../bullet/Bullet";
 import './Storage.css'
-import Stick from "../stick/Stick";
+import Catapult from "../catapult/Catapult";
 
-
+ 
 function Storage() {
   const [selectedScreenNFT, setSelectedScreenNFT] = useState(null);
   const [rubber, setRubber] = useState(3);
   const { account , setAccount } = useContext(WalletContext);
   const [isNoNFT,  setIsNoNFT] = useState(null);
-  // const [isNoStick,  setIsNoStick] = useState(null);
+  // const [isNoCatapult,  setIsNoCatapult] = useState(null);
   // const [isNoBullet,  setIsNoNFT] = useState(null);
   const [randomStage, setRandomStage] = useState(false);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function Storage() {
     const userAccount = {
       accountid: account.accountid,
       amount: account.amount,
-      selected_stick: account.selected_stick,
+      selected_catapult: account.selected_catapult,
       selected_bullet:  account.selected_bullet,
       nfts: null
     }
@@ -54,7 +54,7 @@ function Storage() {
       const userAccount = {
         accountid: account.accountid,
         amount: account.amount,
-        selected_stick: account.selected_stick,
+        selected_catapult: account.selected_catapult,
         selected_bullet:  account.selected_bullet,
         nfts: responseJson
       }
@@ -84,7 +84,7 @@ function Storage() {
       userAccount = {
         accountid: account.accountid,
         amount: account.amount,
-        selected_stick: account.selected_stick,
+        selected_catapult: account.selected_catapult,
         selected_bullet: selectedNFT,
         nfts: account.nfts
       }
@@ -95,7 +95,7 @@ function Storage() {
         userAccount = {
           accountid: account.accountid,
           amount: account.amount,
-          selected_stick: selectedNFT,
+          selected_catapult: selectedNFT,
           selected_bullet: account.selected_bullet,
           nfts: account.nfts
         }
@@ -126,12 +126,12 @@ function Storage() {
             return <Stone key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
           }
           else if(type === "catapult") {
-            if (account.selected_stick) {
-              if (account.selected_stick.tokenId === nft.tokenId) {
+            if (account.selected_catapult) {
+              if (account.selected_catapult.tokenId === nft.tokenId) {
                 selectText = "Selected"
               }
             }
-            return <Stick key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
+            return <Catapult key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
           }
         }
         else {
@@ -147,8 +147,8 @@ function Storage() {
     }
   }
 
-  // function GetStick() {
-  //   let nonSelectStick = 0;
+  // function GetCatapult() {
+  //   let nonSelectCatapult = 0;
   // }
 
 
@@ -178,12 +178,12 @@ function Storage() {
         </div>
         <Routes>
           <Route
-            path="stick"
+            path="catapult"
             element={ 
               <>
               {isNoNFT && 
               <div>
-                <h2> You don't have any Stick </h2>
+                <h2> You don't have any Catapult </h2>
                 <button onClick={handleClick}> Let's Random </button>
               </div>}
               <div className="NFT-div">
@@ -209,7 +209,7 @@ function Storage() {
               </>
             }
           />
-          <Route path="/" element={<Navigate to="stick" replace={true} />} />
+          <Route path="/" element={<Navigate to="Catapult" replace={true} />} />
         </Routes>
       </LayoutPage>
     );
