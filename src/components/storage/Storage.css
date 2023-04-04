@@ -6,6 +6,10 @@
 
 }
 
+.storageTitle {
+    display: flex;
+}
+
 .select-buttom {
     padding: 10px;
     text-decoration: none;

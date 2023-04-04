@@ -11,21 +11,55 @@ import Stick from "../stick/Stick";
 
 
 function Storage() {
-  const [selectedNFT, setSelectedNFT] = useState(null);
-  const [nfts, setNfts] = useState([]);
+  const [selectedScreenNFT, setSelectedScreenNFT] = useState(null);
   const [rubber, setRubber] = useState(3);
   const { account , setAccount } = useContext(WalletContext);
   const [isNoNFT,  setIsNoNFT] = useState(null);
+  // const [isNoStick,  setIsNoStick] = useState(null);
+  // const [isNoBullet,  setIsNoNFT] = useState(null);
+  const [randomStage, setRandomStage] = useState(false);
   const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    if(account) {
+      getNft();
+    }
+  },)
+
 
   const handleClick = () => {
       navigate("/item");
   }
 
+  const refresh = () => {
+    const userAccount = {
+      accountid: account.accountid,
+      amount: account.amount,
+      selected_stick: account.selected_stick,
+      selected_bullet:  account.selected_bullet,
+      nfts: null
+    }
+    setRandomStage(true)
+    setAccount(userAccount)
+    navigate("/storage");
+
+    setTimeout(() => setRandomStage(false), 2000);
+  }
   async function getNft() {
-    const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ account.accountid);
-    const responseJson = await response.json();
-    setNfts(responseJson);
+    if(account.nfts === null) {
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ account.accountid);
+      const responseJson = await response.json();
+      const userAccount = {
+        accountid: account.accountid,
+        amount: account.amount,
+        selected_stick: account.selected_stick,
+        selected_bullet:  account.selected_bullet,
+        nfts: responseJson
+      }
+      setAccount(userAccount)
+    }
   }
 
   async function onNFTClick(nft) {
@@ -35,11 +69,11 @@ function Storage() {
       setRubber( 3 - responseJson.count)
 
     }
-    setSelectedNFT(nft);
+    setSelectedScreenNFT(nft);
   }
 
   function onNFTCloseClick() {
-    setSelectedNFT(null);
+    setSelectedScreenNFT(null);
   }
 
   function onSelectClick(selectedNFT) {
@@ -51,7 +85,8 @@ function Storage() {
         accountid: account.accountid,
         amount: account.amount,
         selected_stick: account.selected_stick,
-        selected_bullet: selectedNFT
+        selected_bullet: selectedNFT,
+        nfts: account.nfts
       }
       setAccount(userAccount)
     }
@@ -61,32 +96,29 @@ function Storage() {
           accountid: account.accountid,
           amount: account.amount,
           selected_stick: selectedNFT,
-          selected_bullet: account.selected_bullet
+          selected_bullet: account.selected_bullet,
+          nfts: account.nfts
         }
         setAccount(userAccount)
       }
     }
-    setSelectedNFT(null)
+    setSelectedScreenNFT(null)
   }
 
-  useEffect(() => {
-    if(account !== null) {
-      getNft();
-    }
-  }, )
 
   function GetInAppNFT(props) {
     let nonSelectNFT = 0;
-    setIsNoNFT(false);
-    const { nfts, type } = props;
-    const nftElements = nfts.map((nft, index) => {
+    const { type } = props;
+    if (account.nfts) {
+      setIsNoNFT(false);
+      const nftElements = account.nfts.map((nft, index) => {
         let selectText = "Select"
         if(nft.metadata === undefined) {
           nonSelectNFT++
         }
         else if(nft.metadata.type === type) {
           if(type === "bullet") {
-            if (account.selected_bullet !== null) {
+            if (account.selected_bullet) {
               if (account.selected_bullet.tokenId === nft.tokenId) {
                 selectText = "Selected"
               }
@@ -94,7 +126,7 @@ function Storage() {
             return <Stone key={index} item={nft} onNFTClick={onNFTClick} selectText={selectText}/>;
           }
           else if(type === "catapult") {
-            if (account.selected_stick !== null) {
+            if (account.selected_stick) {
               if (account.selected_stick.tokenId === nft.tokenId) {
                 selectText = "Selected"
               }
@@ -108,20 +140,25 @@ function Storage() {
       return null
         
     })
-    if (nonSelectNFT === nfts.length) {
-      setIsNoNFT(true);
+      if (nonSelectNFT === account.nfts.length) {
+        setIsNoNFT(true);
+      }
+      return nftElements
     }
-    return nftElements
   }
+
+  // function GetStick() {
+  //   let nonSelectStick = 0;
+  // }
 
 
   let NFTPost = null;
-  if (!!selectedNFT) {
-    if(selectedNFT.metadata.type === "bullet") {
-      NFTPost = <BulletPost item={selectedNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedNFT)} />;
+  if (!!selectedScreenNFT) {
+    if(selectedScreenNFT.metadata.type === "bullet") {
+      NFTPost = <BulletPost item={selectedScreenNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedScreenNFT)} />;
     }
-    else if(selectedNFT.metadata.type === "catapult") {
-      NFTPost = <CatapultPost item={selectedNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedNFT)} rubber={rubber}/>;
+    else if(selectedScreenNFT.metadata.type === "catapult") {
+      NFTPost = <CatapultPost item={selectedScreenNFT} onBgClick={onNFTCloseClick} onSelectClick={() => onSelectClick(selectedScreenNFT)} rubber={rubber}/>;
     }
 
   }
@@ -135,7 +172,10 @@ function Storage() {
   }
     return (
       <LayoutPage>
-        <SelectButtom />
+        <div className="storageTitle">
+          <SelectButtom />
+          <button  onClick={refresh} disabled={randomStage}> refresh</button>
+        </div>
         <Routes>
           <Route
             path="stick"
@@ -146,9 +186,8 @@ function Storage() {
                 <h2> You don't have any Stick </h2>
                 <button onClick={handleClick}> Let's Random </button>
               </div>}
-
               <div className="NFT-div">
-                <GetInAppNFT nfts={nfts} type={"catapult"}/>
+                <GetInAppNFT type={"catapult"}/>
               </div>
               {NFTPost}
               </>
@@ -164,7 +203,7 @@ function Storage() {
                 <button onClick={handleClick}> Let's Random </button>
               </div>}
               <div className="NFT-div">
-                <GetInAppNFT nfts={nfts} type={"bullet"}/>
+                <GetInAppNFT type={"bullet"}/>
               </div>
               {NFTPost}
               </>

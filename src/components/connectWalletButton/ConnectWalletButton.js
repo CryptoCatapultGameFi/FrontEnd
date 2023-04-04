@@ -20,16 +20,19 @@ function ConnectButton(props) {
 
   useEffect(() => {
     const accountId = Cookies.get('accountId');
-
     if (accountId) {
       const fetchData = async () => {
+        
         const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accountId );
         const userAmount = await response.json();
+        const nfts = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ accountId);
+        const nftsJson = await nfts.json();
         const userAccount = {
           accountid: accountId,
           amount: userAmount.result,
           selected_stick: null,
-          selected_bullet: null
+          selected_bullet: null,
+          nfts: nftsJson
         }
         setAccount(userAccount)
       }
@@ -68,13 +71,16 @@ function ConnectButton(props) {
         }
       }
 
+      const nfts = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ accounts[0]);
+      const nftsJson = await nfts.json();
       const userAmount = await response.json();
       Cookies.set('accountId', accounts[0], { expires: 1/24 });
       const userAccount = {
         accountid: accounts[0],
         amount: userAmount.result,
         selected_stick: null,
-        selected_bullet: null
+        selected_bullet: null,
+        nfts: nftsJson
       }
       setAccount(userAccount)
     } catch (error) {
