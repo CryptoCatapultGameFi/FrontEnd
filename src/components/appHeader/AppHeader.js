@@ -1,17 +1,35 @@
 import { NavLink } from 'react-router-dom';
 import ConnectButton from '../connectWalletButton/ConnectWalletButton';
 import { WalletContext } from "../../App";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Cookies from 'js-cookie';
 import './AppHeader.css';
 
 function AppHeader() {
   const { account, setAccount } = useContext(WalletContext);
-  
+  const [ amountStage, setAmountStage ] = useState(false); 
+
   function logout() {
     Cookies.remove('accountId');
     setAccount(null)
   }
+  
+  
+  const refectAmount = async () => {
+    const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + account.accountid );
+    const responseJson = await response.json()
+    const userAccount = {
+      accountid: account.accountid,
+      amount: responseJson.result,
+      selected_catapult: account.selected_catapult,
+      selected_bullet:  account.selected_bullet,
+      nfts: account.nfts
+    }
+    setAmountStage(true)
+    setAccount(userAccount)
+    setTimeout(() => setAmountStage(false), 5000);
+  }
+
 
   function getNavClass(navLinkProps) {
 
@@ -45,7 +63,7 @@ function AppHeader() {
 
         <button className={'app-header-item app-header-address logout'} onClick={logout}> Logout</button>
         <ConnectButton onNav={'app-header-wallet app-header-address'} />
-        <a href="#/" className={'app-header-item app-header-address'} to="about">{account.amount} Token</a>
+        <button  onClick={refectAmount} className={'app-header-item app-header-address'} >{account.amount} Token  O</button>
 
       </header>
     );

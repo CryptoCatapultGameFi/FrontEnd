@@ -7,10 +7,12 @@ function Home() {
   const [totalCatapult, setTotalCatapult] = useState(0);
 
   async function getAllNfts() {
-    const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/all/` + process.env.REACT_APP_ALL_NFT_ADDRESS);
-    const responseJson = await response.json();
-    setTotalBullet(responseJson.totalBullet)
-    setTotalCatapult(responseJson.totalCatapult)
+    if(totalBullet === 0) {
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/all/` + process.env.REACT_APP_ALL_NFT_ADDRESS);
+      const responseJson = await response.json();
+      setTotalBullet(responseJson.totalBullet)
+      setTotalCatapult(responseJson.totalCatapult)
+    }
   }
 
   useEffect(() => {

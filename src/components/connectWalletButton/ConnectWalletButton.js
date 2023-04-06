@@ -20,26 +20,24 @@ function ConnectButton(props) {
 
   useEffect(() => {
     const accountId = Cookies.get('accountId');
-    if (accountId) {
-      const fetchData = async () => {
-        
-        const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accountId );
-        const userAmount = await response.json();
-        const nfts = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ accountId);
-        const nftsJson = await nfts.json();
-        const userAccount = {
-          accountid: accountId,
-          amount: userAmount.result,
-          selected_catapult: null,
-          selected_bullet: null,
-          nfts: nftsJson
-        }
-        setAccount(userAccount)
+    if (accountId && !account) {
+    const fetchData = async () => {
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accountId );
+      const userAmount = await response.json();
+      const nfts = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ accountId);
+      const nftsJson = await nfts.json();
+      const userAccount = {
+        accountid: accountId,
+        amount: userAmount.result,
+        selected_catapult: null,
+        selected_bullet: null,
+        nfts: nftsJson
       }
-      fetchData()
-
+      setAccount(userAccount)
     }
-  }, [setAccount]);
+    fetchData()
+  }
+  }, [setAccount, account]);
 
 
 
@@ -48,7 +46,7 @@ function ConnectButton(props) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       })
-      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accounts[0] );
+
 
       const user = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/` + accounts[0] );
       const userJson = await user.json();
@@ -70,7 +68,7 @@ function ConnectButton(props) {
           throw new Error(`Login accout error with status ${auth.status}..`);
         }
       }
-
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/contracts/getAmount/` + accounts[0] );
       const nfts = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/acc_nft/`+ accounts[0]);
       const nftsJson = await nfts.json();
       const userAmount = await response.json();
