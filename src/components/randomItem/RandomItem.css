@@ -30,5 +30,24 @@
 
 .box-item{
     padding: 20px;
-    
+}
+
+.re-approve{
+    width: auto;
+    position: absolute; 
+    bottom:3px; 
+    font-size: 1em;
+    font-weight: 500;
+    border-color: white;
+    color: rgb(0, 0, 0);
+    padding: 20;
+    background-color: rgb(250, 148, 148);
+}
+
+.approve-contect{
+    padding: auto;
+    margin: auto;
+    float: right;
+    position: relative;
+    background-color: aqua;
 }

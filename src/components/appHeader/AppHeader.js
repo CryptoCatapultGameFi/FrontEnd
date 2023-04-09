@@ -63,7 +63,7 @@ function AppHeader() {
 
         <button className={'app-header-item app-header-address logout'} onClick={logout}> Logout</button>
         <ConnectButton onNav={'app-header-wallet app-header-address'} />
-        <button  onClick={refectAmount} className={'app-header-item app-header-address'} >{account.amount} Token  O</button>
+        <button  onClick={refectAmount} className={'app-header-item app-header-address'} disabled={amountStage}>{account.amount} Token  ↻</button>
 
       </header>
     );

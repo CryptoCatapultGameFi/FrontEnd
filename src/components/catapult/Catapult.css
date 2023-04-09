@@ -1,6 +1,8 @@
 .catapult{
-    max-width: 100%;
-    height: auto;
+    display: block;
+    height: 15vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .rubber{
@@ -9,4 +11,13 @@
 
 .selectNFT{
     text-align: center;
+}
+
+.catapult-name{
+    text-align: center;
+    font-weight: 700;
+}
+
+.catapult-tier{
+    color: rgb(255, 0, 0);
 }

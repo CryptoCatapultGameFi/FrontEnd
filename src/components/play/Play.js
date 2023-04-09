@@ -43,7 +43,7 @@ function Play() {
   else if ((account.selected_catapult === null) || (account.selected_bullet === null)) {
     return (
       <LayoutPage>
-        <h2>please select Catapult and Bullet</h2>
+        <h2>Please select Catapult and Bullet</h2>
         <button onClick={handleClick}> Go to storage </button>
       </LayoutPage>
     );
@@ -54,11 +54,11 @@ function Play() {
         <div className="play-page">
           <div className="play-content">
               <div className="image-content">
-                <img className="catapult" alt="item-img" src={account.selected_catapult.metadata.image} />
-                <img  className="bullet" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
+                <img className="catapult-play" alt="item-img" src={account.selected_catapult.metadata.image} />
+                <img  className="bullet-play" alt="bullet-img" src={account.selected_bullet.metadata.image}  />
               </div>
               <div>
-                <button type="button" className="btn btn-info entryUnity" onClick={play}> Play! </button>
+                <button type="button" className="play-button" onClick={play}> Play Crypto Catapult </button>
               </div>
               
           </div>

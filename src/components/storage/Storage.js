@@ -170,7 +170,10 @@ function Storage() {
       <LayoutPage>
         <div className="storageTitle">
           <SelectButtom />
-          <button  onClick={refresh} disabled={randomStage}> refresh</button>
+          <div className="refresh-context">
+            <button  onClick={refresh} disabled={randomStage} className="refresh-button"> Refresh</button>
+          </div>
+          
         </div>
         <Routes>
           <Route

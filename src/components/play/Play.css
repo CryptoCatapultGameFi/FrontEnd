@@ -7,17 +7,6 @@
   display: inline-block;
 }
 
-/* .entryUnity {
-    max-width: 100%;
-    width: 100px;
-    height: auto;
-    margin-left: 860px;
-    margin-top: 400px;
-    justify-content: center;
-    position: relative;
-    color: #000;
-} */
-
 .play-page {
   display: flex;
   justify-content: center;
@@ -26,6 +15,7 @@
 }
 
 .play-content {
+
   border-radius: 25px;
   background-color: rgb(248, 125, 103);
   max-width: 600px;
@@ -45,4 +35,25 @@
 
 .playImage {
   padding: 20px;
+}
+
+.bullet-play {
+  height: 5vw;
+}
+
+.catapult-play {
+  height: 20vw;
+}
+
+.play-button {
+  background-color: aqua;
+  font-weight: 700;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px 28px;
+  font-size: 25px;
+  cursor: pointer;
+  text-align: center;
 }

@@ -24,7 +24,7 @@ function CatapultPost(props) {
                 <h2 className="Catapult-text"> Power: {item.metadata.power}%</h2>
                 {/* <h3 className="Catapult-text"> Description: {item.metadata.description}</h3> */}
                 <h3 className="Catapult-text rubber"> Rubber: {rubber}/3 </h3>
-                <button onClick={checkRubberOverLimit}> Select </button>
+                <button onClick={checkRubberOverLimit} className="nft-post-select"> Select </button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
             </div>
         </div>
