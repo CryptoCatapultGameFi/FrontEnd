@@ -5,6 +5,7 @@ import "./Home.css"
 function Home() {
   const [totalBullet, setTotalBullet] = useState(0);
   const [totalCatapult, setTotalCatapult] = useState(0);
+  const [totalUser, setTotalUser] = useState(0);
 
   async function getAllNfts() {
     if(totalBullet === 0) {
@@ -12,6 +13,7 @@ function Home() {
       const responseJson = await response.json();
       setTotalBullet(responseJson.totalBullet)
       setTotalCatapult(responseJson.totalCatapult)
+      setTotalUser(responseJson.totalUser)
     }
   }
 
@@ -23,6 +25,11 @@ function Home() {
     <LayoutPage>
       <div className="home">
         <h2 className="home-text-head">Crypto Catapult  Statistics </h2>
+        <div className="home-stat">
+        <img className="home-text-img user-img" alt="logo" src='/user.jpg' />
+        <h1 className="home-text number">{totalUser} </h1>
+        <h1 className="home-text">Users </h1>
+        </div>
         <div className="home-stat">
         <img className="home-text-img" alt="logo" src='/catapult.png' />
         <h1 className="home-text number">{totalCatapult} </h1>

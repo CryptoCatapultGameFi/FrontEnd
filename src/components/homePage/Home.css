@@ -18,10 +18,15 @@
 
 .home-text-img{
     padding: 5px;
-    width: 10vb;
-    height: 10vb;
+    width: 15vb;
+    height: 15vb;
     display: inline-block;
 }
+
+/* .user-img {
+    width: 15vb;
+    height: 15vb;
+} */
 
 .home-text{
     font-size: 5vb;
@@ -30,7 +35,7 @@
 }
 
 .home-text-head{
-    font-size: 4.5vb;
+    font-size: 6vb;
     text-shadow: 2px 2px 5px red;
     display: inline-block;
 }

@@ -71,7 +71,6 @@ function RandomItem() {
       else {
         const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/bullet`);
         const res = await response.json()
-        console.log(account.accountid)
         const tx = await contract.purchaseToMintBullet(res.id, res.bullet_gateway, {
           gasLimit: 1000000,
         })
