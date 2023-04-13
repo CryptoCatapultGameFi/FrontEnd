@@ -10,7 +10,7 @@
 
 html, body {
     background-image: 
-    url("bg2.png");
+    url("background.png");
     background-size:cover;
     background-color: rgb(220, 235, 241);
 }

@@ -2,10 +2,9 @@
     display: inline-block;
     position: fixed;
     top: 15%;
-    left: 2%;
-    background: blue;
-    border: 6px solid #73AD21;
-    width: 50%;
+    left: 4%;
+    border: 6px solid #FEFF86;
+    width: 40%;
     padding: 20px;
     background-color: rgb(130, 240, 248);
 }
@@ -18,8 +17,8 @@
 
 .home-text-img{
     padding: 5px;
-    width: 15vb;
-    height: 15vb;
+    width: 6vw;
+    height: 6vw;
     display: inline-block;
 }
 
@@ -29,17 +28,49 @@
 } */
 
 .home-text{
-    font-size: 5vb;
+    font-size: 2vw;
     padding: 10px;
     display: inline-block;
 }
 
 .home-text-head{
-    font-size: 6vb;
+    font-size: 3vw;
     text-shadow: 2px 2px 5px red;
     display: inline-block;
 }
 
 .number{
     font-weight: 700;
+}
+
+.instruction-contract{
+    display: inline-block;
+    position: fixed;
+    top: 15%;
+    right: 4%;
+    border: 6px solid #FEFF86;
+    width: 40%;
+    padding: 20px;
+    background-color: rgb(243, 199, 222);
+}
+
+.instruction{
+    display: grid;
+    padding: 5px;
+}
+
+.contract{
+    margin-top: 2%;
+    display: grid;
+    padding: 5px;
+}
+
+.inst-text {
+    font-size: 1.5vw;
+    background-color: white;
+    padding: 5px;
+}
+
+.more-prio {
+    font-size: 2vw; 
 }

@@ -3,6 +3,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    width: 30vw;
+    height: 24vw;
     
 }
 
@@ -35,13 +37,14 @@
 .re-approve{
     width: auto;
     position: absolute; 
-    bottom:3px; 
+    bottom:3px;
+    right: -10px; 
     font-size: 1em;
     font-weight: 500;
     border-color: white;
     color: rgb(0, 0, 0);
     padding: 20;
-    background-color: rgb(250, 148, 148);
+    color: rgb(250, 85, 85);
 }
 
 .approve-contect{

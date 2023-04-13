@@ -12,6 +12,7 @@ function AppHeader() {
   function logout() {
     Cookies.remove('accountId');
     setAccount(null)
+    window.location.href="/home";
   }
   
   
@@ -57,13 +58,13 @@ function AppHeader() {
         <NavLink className={getNavClass} to="play">Play</NavLink>
         <NavLink className={getNavClass} to="storage">Storage</NavLink>
         <NavLink className={getNavClass} to="item">Find Item</NavLink>
-        <a className={"app-header-item"}href="https://testnets.opensea.io/collection/crypto-catapult-4" >Marketplace</a>
-        <a className={"app-header-item"}href="https://app.uniswap.org/" >Swap</a>
+        <a className={"app-header-item"} href="https://testnets.opensea.io/collection/crypto-catapult-4" target="_blank" rel="noopener noreferrer">Marketplace</a>
+        <a className={"app-header-item"}href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Swap</a>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
 
         <button className={'app-header-item app-header-address logout'} onClick={logout}> Logout</button>
         <ConnectButton onNav={'app-header-wallet app-header-address'} />
-        <button  onClick={refectAmount} className={'app-header-item app-header-address'} disabled={amountStage}>{account.amount} Token  ↻</button>
+        <button  onClick={refectAmount} className={'app-header-item app-header-address'} disabled={amountStage}>{account.amount} CCP Tokens  ↻</button>
 
       </header>
     );

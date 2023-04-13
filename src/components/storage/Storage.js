@@ -27,9 +27,13 @@ function Storage() {
   },)
 
 
-  const handleClick = () => {
+  const handleCatapultClick = () => {
       navigate("/item");
   }
+
+  const handleBulletClick = () => {
+    navigate("/item/bullet");
+}
 
   const refresh = () => {
     const userAccount = {
@@ -181,9 +185,9 @@ function Storage() {
             element={ 
               <>
               {isNoNFT && 
-              <div>
+              <div className="no-item-context">
                 <h2> You don't have any Catapult </h2>
-                <button onClick={handleClick}> Let's Random </button>
+                <button className="random-button" onClick={handleCatapultClick}> Let's Random </button>
               </div>}
               <div className="NFT-div">
                 <GetInAppNFT type={"catapult"}/>
@@ -197,9 +201,9 @@ function Storage() {
             element={
               <>
               {isNoNFT && 
-              <div>
+              <div className="no-item-context">
                 <h2> You don't have any Bullet </h2>
-                <button onClick={handleClick}> Let's Random </button>
+                <button className="random-button" onClick={handleBulletClick}> Let's Random </button>
               </div>}
               <div className="NFT-div">
                 <GetInAppNFT type={"bullet"}/>

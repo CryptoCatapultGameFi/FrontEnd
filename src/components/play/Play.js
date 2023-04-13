@@ -43,8 +43,11 @@ function Play() {
   else if ((account.selected_catapult === null) || (account.selected_bullet === null)) {
     return (
       <LayoutPage>
-        <h2>Please select Catapult and Bullet</h2>
-        <button onClick={handleClick}> Go to storage </button>
+        <div className="selectCB"> 
+          <h2>Please select Catapult and Bullet</h2>
+          <button className="storate-button" onClick={handleClick}> Go to storage </button>
+        </div>
+
       </LayoutPage>
     );
   }
@@ -60,7 +63,6 @@ function Play() {
               <div>
                 <button type="button" className="play-button" onClick={play}> Play Crypto Catapult </button>
               </div>
-              
           </div>
         </div>
   
