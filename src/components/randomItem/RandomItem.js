@@ -7,16 +7,23 @@ import React, { useContext, useState } from "react";
 import { ethers } from 'ethers';
 import contractAddress from '../../json/contract-address.json';
 import NFTContractAddress from "../../json/nft-contract-address.json"
+import SuccessPost from "./SuccessPost";
 
 function RandomItem() {
   const { account, setAccount } = useContext(WalletContext);
   const [randomStage, setRandomStage] = useState(false);
+  const [onSuccessPopUp, setOnSuccessPopUp] = useState(false);
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const contract = new ethers.Contract(
     process.env.REACT_APP_MINT_NFT_ADDRESS, 
     NFTContractAddress,
     provider.getSigner(0)
   );
+
+
+  function onPopUpCloseClick() {
+    setOnSuccessPopUp(false);
+  }
 
   async function approveMetamask() {
     try{
@@ -63,6 +70,9 @@ function RandomItem() {
         const tx = await contract.purchaseToMintCatapult(res.id, res.catapult_gateway, {
           gasLimit: 1000000,
         })
+        if (tx) {
+          setOnSuccessPopUp(true)
+        }
       }
       setTimeout(() => setRandomStage(false), 1000);
     } catch (err) {
@@ -86,6 +96,9 @@ function RandomItem() {
         const tx = await contract.purchaseToMintBullet(res.id, res.bullet_gateway, {
           gasLimit: 1000000,
         })
+        if (tx) {
+          setOnSuccessPopUp(true)
+        }
       }
       setTimeout(() => setRandomStage(false), 1000);
     } catch (err) {
@@ -94,6 +107,11 @@ function RandomItem() {
     }
   }
 
+  let SuccessRandom = null;
+  if(onSuccessPopUp) {
+    SuccessRandom = <SuccessPost onBgClick={onPopUpCloseClick}/>;
+  }
+  
   if (account === null) {
     return (
       <LayoutPage>
@@ -109,22 +127,28 @@ function RandomItem() {
           <Route
             path="catapult"
             element={
-              <div className="box-item">
-                <img className="box" src='/box.png' alt="box-img" />
-                <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
-                <button onClick={RandomCatapult} disabled={randomStage} className="box-text random-buttom" >500 Token</button>
-              </div>
+              <>
+                <div className="box-item">
+                  <img className="box" src='/box.png' alt="box-img" />
+                  <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
+                  <button onClick={RandomCatapult} disabled={randomStage} className="box-text random-buttom" >500 Token</button>
+                </div>
+                {SuccessRandom}
+              </>
+
             }
           />
           <Route
             path="bullet"
             element={
-              <div className="box-item">
-                <img className="box" src='/box.png' alt="box-img"/>
-                <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
-                <button onClick={RandomBullet} disabled={randomStage} className="box-text random-buttom" >300 Token</button>
-              </div>
-
+              <>
+                <div className="box-item">
+                  <img className="box" src='/box.png' alt="box-img"/>
+                  <h2 className="box-text">Common60%    Rare30%  SuperRare10%</h2>
+                  <button onClick={RandomBullet} disabled={randomStage} className="box-text random-buttom" >300 Token</button>
+                </div>
+                {SuccessRandom}
+              </>
             }
           />
           <Route path="/" element={<Navigate to="catapult" replace={true} />} />
