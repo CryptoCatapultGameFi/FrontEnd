@@ -10,6 +10,7 @@
 }
 
 .home-stat{
+    border: 3px solid #6056eb;
     padding: 20px;
     background-color: rgb(255, 255, 255);
     margin-top: 2%;
@@ -57,18 +58,26 @@
 .instruction{
     display: grid;
     padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 4px solid #B2A4FF;
 }
 
 .contract{
     margin-top: 2%;
     display: grid;
     padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 4px solid #B2A4FF;
 }
 
 .inst-text {
     font-size: 1.5vw;
-    background-color: white;
+    color: black;
     padding: 5px;
+}
+
+.inst-text:hover {
+    color: red;
 }
 
 .more-prio {

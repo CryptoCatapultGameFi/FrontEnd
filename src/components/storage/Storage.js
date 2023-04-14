@@ -15,7 +15,7 @@ function Storage() {
   const [rubber, setRubber] = useState(3);
   const { account , setAccount } = useContext(WalletContext);
   const [isNoNFT,  setIsNoNFT] = useState(null);
-  const [randomStage, setRandomStage] = useState(false);
+  const [refreshStage, setRefreshStage] = useState(false);
   const navigate = useNavigate();
 
 
@@ -43,10 +43,10 @@ function Storage() {
       selected_bullet:  account.selected_bullet,
       nfts: null
     }
-    setRandomStage(true)
+    setRefreshStage(true)
     setAccount(userAccount)
     navigate("/storage");
-    setTimeout(() => setRandomStage(false), 2000);
+    setTimeout(() => setRefreshStage(false), 2000);
   }
 
   async function getNft() {
@@ -175,7 +175,7 @@ function Storage() {
         <div className="storageTitle">
           <SelectButtom />
           <div className="refresh-context">
-            <button  onClick={refresh} disabled={randomStage} className="refresh-button"> Refresh</button>
+            <button  onClick={refresh} disabled={refreshStage} className="refresh-button"> Refresh</button>
           </div>
           
         </div>

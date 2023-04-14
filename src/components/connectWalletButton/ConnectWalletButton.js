@@ -5,12 +5,14 @@ import formatAddress from "../../util/formatAddress";
 import { ethers } from 'ethers';
 import contractAddress from '../../json/contract-address.json';
 import Cookies from 'js-cookie';
-
+import "./ConnectWalletButton.css"
 function ConnectButton(props) {
 
   const [isWalletInstalled, setIsWalletInstalled] = useState(false);
+  const [connectStage, setConnectStage] = useState(false);
   // state for keeping track of current connected account.
   const {account, setAccount} = useContext(WalletContext);
+
  
   useEffect(() => {
     if (window.ethereum) {
@@ -43,6 +45,7 @@ function ConnectButton(props) {
 
   async function connectWallet() {
     try {
+      setConnectStage(true)
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       })
@@ -81,7 +84,9 @@ function ConnectButton(props) {
         nfts: nftsJson
       }
       setAccount(userAccount)
+      setTimeout(() => setConnectStage(false), 1000);
     } catch (error) {
+      setConnectStage(false)
       alert("Something went wrong of Login User please try again");
     }
   }
@@ -90,7 +95,7 @@ function ConnectButton(props) {
   if (account === null) {
     if (isWalletInstalled) {
       return <NavLink className={props.onNav} to="home">
-      <button onClick={connectWallet}>Connect Wallet</button>
+      <button onClick={connectWallet} disabled={connectStage} className="connect-button">Connect Wallet</button>
     </NavLink>
     }
     else { 
@@ -99,7 +104,7 @@ function ConnectButton(props) {
 
   } else {
     return (
-      <NavLink className="app-header-item app-header-address" to="home">Connected as: {formatAddress(account.accountid)}</NavLink>
+      <p className="app-header-item app-header-address" to="home">Connected as: {formatAddress(account.accountid)}</p>
     );
   }
 }
