@@ -48,13 +48,14 @@ function Home() {
             <a className="inst-text more-prio" href="https://docs.google.com/document/d/1t1mMhwzs6SwVCHOi5hBrcxaFqhmyaJDaVJVyYfsvO7Y" target="_blank" rel="noopener noreferrer"> Login </a>
             <a className="inst-text" href="https://docs.google.com/document/d/1D35ZMYzVFjFW-JVNY_NTNBlXM1G5taf-sJgMf_-DlmE/edit?usp=sharing" target="_blank" rel="noopener noreferrer"> How to get CCP token</a>
             <a className="inst-text" href="https://docs.google.com/document/d/1MYA-b1qzsprLie6j1HZM77P1NdWHOIhclODz0uLT5wE/edit?usp=sharing" target="_blank" rel="noopener noreferrer"> How to play </a>
-            <a className="inst-text" href="https://docs.google.com/document/d/1t1mMhwzs6SwVCHOi5hBrcxaFqhmyaJDaVJVyYfsvO7Y" target="_blank" rel="noopener noreferrer"> Marketplace </a>
+            <a className="inst-text" href="https://docs.google.com/document/d/1NLXiYCPwXmQ9Qv5MfmKXdz76dUY6cl6qlFndOg40L7w/edit?usp=sharing" target="_blank" rel="noopener noreferrer"> Find Item </a>
+            <a className="inst-text" href="https://docs.google.com/document/d/17R9RwxV0oT1B44iGDjclik3DOFNEnFbm2lsqR6EVz_w/edit?usp=sharing" target="_blank" rel="noopener noreferrer"> Marketplace </a>
             <a className="inst-text" href="https://docs.google.com/document/d/1wVn70liWX78yQV75INIwzIpxuuigUSjFYhFRiyIpaos/edit?usp=sharing" target="_blank" rel="noopener noreferrer"> Swap </a>
           </div>
           <div className="contract">
             <a className="inst-text more-prio" href="https://docs.google.com/forms/d/e/1FAIpQLSfkdspQi5oq8o-nb8ZgW9bgF76lhEXs_HZyzi4W6iuTJQQ5FA/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer"> Get CCP token(first time) </a>
             <a className="inst-text" href="https://docs.google.com/forms/d/e/1FAIpQLSdUO5hV76zv2Xnkp64cuycN9PkIfocC9u8eo5yVIgOpAln-rQ/viewform" target="_blank" rel="noopener noreferrer"> Feedback </a>
-            <a className="inst-text" href="https://docs.google.com/document/d/1t1mMhwzs6SwVCHOi5hBrcxaFqhmyaJDaVJVyYfsvO7Y" target="_blank" rel="noopener noreferrer"> Problem </a>  
+            <a className="inst-text" href="https://docs.google.com/forms/d/e/1FAIpQLSfvFph_OaGe3uJZSf3S_GdnS5qVXCxv1-EdNygV8Tg1kBdV8w/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer"> Problem </a>  
           </div>
         </div>
       </div>
