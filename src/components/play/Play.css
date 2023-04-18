@@ -46,6 +46,7 @@
 }
 
 .play-button {
+  border-radius: 0.5vw;
   background-color: aqua;
   font-weight: 700;
   padding: 15px;
