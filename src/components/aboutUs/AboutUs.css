@@ -1,8 +1,8 @@
 .person-picture{
     display: block;
     border-radius: 50%;
-    height: 32vb;
-    width: 30vb;
+    height: 25vb;
+    width: 20vb;
     margin-left: auto;
     margin-right: auto;
 }
@@ -16,6 +16,50 @@
 
 .text-name {
     margin: auto;
-    padding: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+.text-role {
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+    color: rgb(58, 58, 58);
+}
+
+.text-head {
+    font-size: 2.75vw;
+    text-shadow: 2px 2px 5px red;
+    display: inline-block;
+}
+
+.text-sub-head {
+    font-size: 2.5vw;
+    margin-top: 2vw;
+    text-shadow: 2px 2px 5px rgb(250, 24, 43);
+    display: inline-block;
+}
+
+.gameFi{
+    background-color: rgb(250, 152, 135);
+    padding: 10px;
     text-align: center;
+    border-radius: 1vw;
+}
+
+.person {
+    background-color: rgb(250, 152, 135);
+    padding: 10px;
+    text-align: center;
+    border-radius: 1vw;
+}
+
+.text-font-italic {
+    font-style: italic;
+}
+
+.text {
+    color: rgb(58, 58, 58);
+    text-align: left;
+    padding: 10px;
 }

@@ -1,6 +1,6 @@
 import LayoutPage from "../../layout/LayoutPage";
 import { WalletContext } from "../../App";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import "./Play.css";
@@ -8,12 +8,28 @@ import "./Play.css";
 function Play() {
   
   const { account } = useContext(WalletContext);
+  const [isAlreadyPlayGame, setIsAlreadyPlayGame] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
       navigate("/storage");
   }
 
+  useEffect(() => {
+    if(account) {
+      isAlreadyPlay();
+    }
+  },)
+
+  async function isAlreadyPlay() {
+    if (isAlreadyPlayGame === false) {
+      const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/user/status/`+ account.accountid);
+      const responseJson = await response.json();
+      console.log(responseJson)
+      setIsAlreadyPlayGame(responseJson.user_playing)
+    }
+
+  }
 
   async function play() {
     try {
@@ -39,6 +55,18 @@ function Play() {
       <h2>Please Login</h2>
       </LayoutPage>
     );
+  }
+  else if (isAlreadyPlayGame) {
+    return (       
+    <LayoutPage>
+      <div className="play-page">
+        <div className="play-content"> 
+          <h2 className="already-play-text">You Already In Game</h2>
+          <button type="button" className="play-button re-join-button" onClick={play}> Re Join </button>
+        </div>
+      </div>
+  </LayoutPage>
+    )
   }
   else if ((account.selected_catapult === null) || (account.selected_bullet === null)) {
     return (

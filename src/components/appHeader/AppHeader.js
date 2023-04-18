@@ -34,7 +34,7 @@ function AppHeader() {
 
   function getNavClass(navLinkProps) {
 
-    let navClass = 'app-header-item';
+    let navClass = 'app-header-item app-hover';
     if (navLinkProps.isActive) navClass += ' app-header-item-active';
     return navClass;
   }
@@ -58,8 +58,8 @@ function AppHeader() {
         <NavLink className={getNavClass} to="play">Play</NavLink>
         <NavLink className={getNavClass} to="storage">Storage</NavLink>
         <NavLink className={getNavClass} to="item">Find Item</NavLink>
-        <a className={"app-header-item"} href="https://testnets.opensea.io/collection/crypto-catapult-4" target="_blank" rel="noopener noreferrer">Marketplace</a>
-        <a className={"app-header-item"}href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Swap</a>
+        <a className={"app-header-item app-hover"} href="https://testnets.opensea.io/collection/crypto-catapult-4" target="_blank" rel="noopener noreferrer">Marketplace</a>
+        <a className={"app-header-item app-hover"}href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Swap</a>
         <NavLink className={getNavClass} to="about">About Us</NavLink>
 
         <button className={'app-header-item app-header-address logout'} onClick={logout}> Logout</button>

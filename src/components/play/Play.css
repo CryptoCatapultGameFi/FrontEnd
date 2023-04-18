@@ -58,6 +58,10 @@
   text-align: center;
 }
 
+.play-button:hover {
+  background-color: rgb(7, 135, 255);
+  font-weight: 700;
+}
 
 .selectCB{
   margin-top: 10%;
@@ -74,4 +78,17 @@
   font-weight: 500;
   border-color: white;
   color: rgb(250, 85, 85);
+}
+
+.storate-button:hover {
+  font-weight: 700;
+}
+.re-join-button{
+  padding: 10px;
+  margin-top: 10%;
+}
+
+.already-play-text{
+  color: rgb(255, 0, 0);
+  text-shadow: 3px 1px 1px #000000
 }

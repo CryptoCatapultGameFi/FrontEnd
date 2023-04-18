@@ -55,12 +55,12 @@ function RandomItem() {
       nfts: account.nfts
     }
     setAccount(userAccount)
-    return amount;
+    return amount.result;
   }
   async function RandomCatapult() {
     try{
       setRandomStage(true)
-      const amount = getAmount()
+      const amount = await getAmount()
       if (amount < 500) {
         alert("You don't have enough CCP Token to random Catapult")
       }
@@ -86,13 +86,14 @@ function RandomItem() {
   async function RandomBullet() {
     try{
       setRandomStage(true)
-      const amount = getAmount()
+      const amount = await getAmount()
       if (amount < 300) {
         alert("You don't have enough CCP Token to random Bullet")
       }
       else {
         const response = await fetch(process.env.REACT_APP_BACKEND_PATH + `/nfts/random/bullet`);
         const res = await response.json()
+        console.log(res)
         const tx = await contract.purchaseToMintBullet(res.id, res.bullet_gateway, {
           gasLimit: 1000000,
         })

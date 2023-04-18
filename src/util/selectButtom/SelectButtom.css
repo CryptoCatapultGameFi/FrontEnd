@@ -20,3 +20,9 @@
     background-color: rgb(136, 130, 130);
     border: 3px solid #000000;
 }
+
+.select-buttom:hover {
+    color: rgb(255, 40, 40);
+
+    
+}

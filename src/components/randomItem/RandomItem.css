@@ -30,6 +30,11 @@
     
 }
 
+.random-buttom:hover {
+    font-weight: 700;
+    
+}
+
 .box-item{
     padding: 20px;
 }
