@@ -1,1 +1,1 @@
-Crypto Catapult Front-end
+Crypto Catapult Project Front-end
